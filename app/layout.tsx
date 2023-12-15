@@ -1,10 +1,12 @@
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import '@/app/globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+import '@/app/globals.css'
+import Header from "@/components/shared/Header";
+import { inter } from "./fonts";
+
+
 
 export const metadata: Metadata = {
   title: process.env.BRANDNAME as string,
@@ -19,8 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        {/* from vercel */}
        <SpeedInsights />
        <Analytics />
+       {/* ----- */}
+
+       <Header />
+
        <main>
        {children}
        </main>
