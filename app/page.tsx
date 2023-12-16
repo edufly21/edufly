@@ -1,9 +1,10 @@
-import Image from 'next/image'
+import Image from "next/image";
+import DealCallOut from "../components/shared/DealCallOut";
 
-export default function Home() {
+export default function IndexPage() {
   return (
-    <section >
- 
+    <section>
+      <DealCallOut />
     </section>
-  )
+  );
 }

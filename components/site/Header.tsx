@@ -1,8 +1,10 @@
 import React from "react";
-import { sansita } from "@/app/fonts";
 import Link from "next/link";
+import NavMenu from "@/components/site/NavMenu";
+
+import { sansita } from "@/app/fonts";
+import { siteConfig } from "@/config/site";
 import { BookImage, GanttChartSquare, ShoppingCart, User } from "lucide-react";
-import NavMenu from "./NavMenu";
 
 export default function Header() {
   return (
@@ -10,10 +12,9 @@ export default function Header() {
       <div className="flex justify-between">
         <Link href="/">
           <h1
-            className={`${sansita.className} text-5xl text-orange-600 font-bold`}
+            className={`${sansita.className} text-5xl text-primary font-bold`}
           >
-            {" "}
-            {process.env.BRANDNAME}
+            {siteConfig.name}
           </h1>
         </Link>
         <div className="hidden md:flex gap-7">
