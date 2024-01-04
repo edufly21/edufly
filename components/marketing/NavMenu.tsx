@@ -1,23 +1,18 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
 
-import { cn } from "@/lib/utils";
 // import { Icons } from "@/components/icons"
 
+import { mainNav } from "@/config/navs";
 import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { ChevronRight } from "lucide-react";
-import { mainNav } from "@/config/navs";
-import { list } from "postcss";
+import { NavItem } from "@/types";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -91,7 +86,7 @@ export default function NavMenu() {
               <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
               {item.content && (
                 <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-white">
+                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-card shadow-md">
                     {/* <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <a

@@ -1,18 +1,25 @@
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
-import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata, Viewport } from "next";
 
-import "@/styles/globals.css";
-import Header from "@/components/site/Header";
-import { inter } from "./fonts";
+import NextTopLoader from "nextjs-toploader";
+
+// import { Providers as TRPCProviders } from "../contexts/trpc-providers";
+import { Toaster } from "@/components/ui/sonner";
+
+import { ThemeProvider } from "@/contexts/theme-provider";
+
 import { siteConfig } from "@/config/site";
-import  TailwindIndicator  from "@/components/shared/TaillwindcssIndicator";
+import TailwindIndicator from "@/components/shared/TaillwindcssIndicator";
+import { cn } from "@/lib/utils";
+import "@/styles/globals.css";
+import { inter, sansita } from "./ui/fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
@@ -25,7 +32,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "Abdurezak Farah",
-      url: "https://cabdirisaaq.com.com",
+      url: "https://www.cabdirisaaq.com.",
     },
   ],
   creator: "Cabdirisaaq",
@@ -53,6 +60,13 @@ export const metadata: Metadata = {
   manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f97316" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -60,13 +74,46 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={cn(
+          "min-h-screen bg-background text-foreground font-sans antialiased",
+          inter.variable,
+          sansita.variable
+        )}
+      >
         <SpeedInsights />
         <Analytics />
 
-        <Header />
         <TailwindIndicator />
-        <main>{children}</main>
+        <main className="relative min-h-screen">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+          <NextTopLoader
+            color="#f97316"
+            initialPosition={0.08}
+            crawlSpeed={200}
+            height={3}
+            crawl={true}
+            showSpinner={false}
+            easing="ease"
+            speed={200}
+            shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+            template='<div class="bar" role="bar"><div class="peg"></div></div> 
+  <div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+            zIndex={1600}
+            showAtBottom={false}
+          />
+          <Toaster position="top-center" richColors />
+          <TailwindIndicator />
+          <Analytics />
+          <SpeedInsights />
+        </main>
       </body>
     </html>
   );

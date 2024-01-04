@@ -1,4 +1,4 @@
-interface SiteConfig {
+export interface SiteConfig {
   name: string;
   description: string;
   url: string;
@@ -9,13 +9,13 @@ interface SiteConfig {
   };
 }
 
-interface NavItem {
+export interface NavItem {
   title: string;
   href: string;
   content?: NavListItem[];
 }
 
-interface NavListItem {
+export interface NavListItem {
   title: string;
   href: string;
   items?: NavItem[];

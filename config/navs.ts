@@ -1,3 +1,5 @@
+import { NavItem } from "@/types";
+
 export const mainNav: NavItem[] = [
   {
     title: "Holidays",
