@@ -3,7 +3,7 @@ import Quote from "../blocks/Quote";
 import Content from "../blocks/Content";
 import Alert from "../blocks/Alert";
 
-const Blogs: CollectionConfig = {
+export const Blogs: CollectionConfig = {
   slug: "posts",
   admin: {
     defaultColumns: ["title", "author", "category", "tags", "status"],
@@ -121,4 +121,3 @@ const Blogs: CollectionConfig = {
     },
   ],
 };
-export default Blogs;

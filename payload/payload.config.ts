@@ -12,10 +12,10 @@ dotenv.config({
 });
 
 import { buildConfig } from "payload/config";
-import { siteConfig } from "./config/site";
+import { siteConfig } from "../config/site";
 // import Logo from "./payload/components/graphics/logo";
 // import Icon from "./payload/components/graphics/icon";
-import { Users } from "./payload/collections/users";
+import { Users } from "./collections/users";
 import { Blogs } from "./collections/blogs";
 import { Pages } from "./collections/pages";
 import { Media } from "./collections/media";
@@ -35,7 +35,7 @@ const storageAdapter = s3Adapter({
 
 export default buildConfig({
   serverURL: process.env.next_PUBLIC_SERVER_URL || "",
-  collections: [Users, Events, Media],
+  collections: [Users, Pages, Media],
   routes: {
    admin: "/dashboard",
   },
@@ -49,13 +49,13 @@ export default buildConfig({
       favicon: "/favicon.ico",
       ogImage: "/opengraph.png",
     },
-    components: {
-      // beforeLogin: [BeforeLogin],
-      graphics: {
-        Logo,
-        Icon,
-      },
-    },
+    // components: {
+    //   // beforeLogin: [BeforeLogin],
+    //   graphics: {
+    //     Logo,
+    //     Icon,
+    //   },
+    // },
     css: path.resolve(__dirname, "./styles/admin.scss"),
   },
   editor: slateEditor({}),

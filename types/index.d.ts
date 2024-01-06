@@ -42,6 +42,7 @@ type NavItem = {
   title: string;
   href: string;
   disabled?: boolean;
+  content: any;
 };
 
 type MainNavItem = NavItem;

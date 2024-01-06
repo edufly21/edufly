@@ -1,6 +1,6 @@
 import { CollectionConfig } from "payload/types";
 
-const Pages: CollectionConfig = {
+export const Pages: CollectionConfig = {
   slug: "pages",
   admin: {
     defaultColumns: ["title", "status"],
@@ -65,4 +65,3 @@ const Pages: CollectionConfig = {
     },
   ],
 };
-export default Pages;
