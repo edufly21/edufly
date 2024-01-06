@@ -11,7 +11,7 @@ import Cart from "./cart";
 
 export default function Header() {
   return (
-    <header className=" px-4 md:px-6 py-2.5 md:py-3.5">
+    <header className="sticky top-0 z-50 bg-background px-4 md:px-6 py-2.5 md:py-3.5">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-1">
           <div>

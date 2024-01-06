@@ -10,7 +10,7 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import { Separator } from "../ui/separator";
-import { formatPrice } from "@/lib/utils";
+import { cn, formatPrice } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
 import Image from "next/image";
@@ -41,9 +41,17 @@ const Cart = () => {
       <SheetTrigger className="group -m-2 flex items-center p-2">
         <ShoppingCart
           aria-hidden="true"
-          className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+          className={cn("h-6 w-6 flex-shrink-0 text-gray-400 ", {
+            "text-orange-600 group-hover:text-primary/80":
+              isMounted && itemCount > 0,
+          })}
         />
-        <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+        <span
+          className={cn("ml-2 text-sm font-medium text-gray-700 ", {
+            "text-orange-600 group-hover:text-primary/80":
+              isMounted && itemCount > 0,
+          })}
+        >
           {isMounted ? itemCount : 0}
         </span>
       </SheetTrigger>
