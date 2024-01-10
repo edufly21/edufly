@@ -63,6 +63,9 @@ module.exports = {
         inter: ["var(--font-inter)", ...fontFamily.sans],
         sansita: ["var(--font-sansita)", ...fontFamily.sans],
       },
+      backgroundImage: {
+        "blob-scene": "url('/assets/bg/blob-scene-haikei.svg')",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
