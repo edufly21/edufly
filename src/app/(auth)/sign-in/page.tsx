@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default async function SignIn() {
   return (
-    <div className="p-5 h-fit bg-background  shadow-lg rounded-lg border ">
+    <div className="p-5 h-fit bg-background shadow-lg rounded-lg border-border ">
       <div className="flex flex-wrap items-center gap-11 mb-9 justify-between">
         <LogoWithName name={siteConfig.name} href="/" />
 
@@ -30,7 +30,7 @@ export default async function SignIn() {
 
       <section className="mb-9">
         <h1 className=" mb-1 text-2xl font-semibold">Sign in</h1>
-        <p className="text-neutral-900 font-light">
+        <p className="text-muted-foreground font-light">
           to continue to&nbsp;
           <strong className="font-[500]">{siteConfig.name}.</strong>
         </p>
