@@ -12,7 +12,7 @@ export const renderers: CustomRenderers = {
   h2: ({ node, Serialize }) => (
     <h2
       className={cn(
-        "mt-10 scroll-m-2 border-b pb-1 text-3xl leading-none font-semibold tracking-tight first:mt-0"
+        "mt-10 scroll-m-2 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0"
       )}
     >
       <Serialize content={node.children} />
@@ -71,7 +71,7 @@ export const renderers: CustomRenderers = {
     </li>
   ),
 
-  quote: ({ node, Serialize }) => (
+  blockquote: ({ node, Serialize }) => (
     <blockquote
       className={cn(
         "mt-6 border-l-2 text-red-400 pl-6 italic [&>*]:text-muted-foreground"
