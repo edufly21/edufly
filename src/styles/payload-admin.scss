@@ -1,17 +1,17 @@
 @import "~payload/scss";
 
-$breakpoint-xs-width: 400px !default;
-$breakpoint-s-width: 768px !default;
-$breakpoint-m-width: 1024px !default;
+$breakpoint-xs-width: 400px ;
+$breakpoint-s-width: 768px ;
+$breakpoint-m-width: 1024px;
 $breakpoint-l-width: 1440px !default;
 
-$style-radius-s: 0.5rem - 4px !default;
-$style-radius-m: 0.5rem - 2px !default;
-$style-radius-l: 0.5rem !default;
-$style-stroke-width: 1px !default;
+$style-radius-s: 0.5rem - 4px ;
+$style-radius-m: 0.5rem - 2px ;
+$style-radius-l: 0.5rem ;
+$style-stroke-width: 1px ;
 
 :root {
-  --base-px: 20;
+  --base-px: 24;
   --base-body-size: 13;
   --base: calc((var(--base-px) / var(--base-body-size)) * 1rem);
 
@@ -22,7 +22,7 @@ $style-stroke-width: 1px !default;
   --scrollbar-width: 17px;
 
   --theme-bg: hsl(0, 0%, 100%);
-  --theme-input-bg: var(--theme-elevation-0);
+  --theme-input-bg: hsl(20 5.9% 90%);
   --theme-text: hsl(222.2 84% 4.9%);
   --theme-overlay: rgba(5, 5, 5, 0.5);
   --theme-baseline: #{$baseline-px};
@@ -91,47 +91,47 @@ $style-stroke-width: 1px !default;
 
 html {
   @extend %body;
-  background: var(--theme-bg);
+  background: var(--background);
   -webkit-font-smoothing: antialiased;
 
   &[data-theme="dark"] {
-    --theme-bg: hsl(var(--background));
-    --theme-text: hsl(var(--foreground));
-    --theme-input-bg: var(--theme-elevation-50);
+    --theme-bg: hsl(var(222.2 84% 4.9%));
+    --theme-text: hsl(var(210 40% 98%));
+    --theme-input-bg: hsl(217.2 32.6% 17.5%);
     --theme-overlay: rgba(5, 5, 5, 0.75);
     color-scheme: dark;
 
     ::selection {
-      color: var(--color-base-1000);
+      color: var(--primary/90);
     }
 
     ::-moz-selection {
-      color: var(--color-base-1000);
+      color: var(--primary/90);
     }
   }
 
   @include mid-break {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
 body {
   font-family: var(--font-sans), var(--font-body);
   font-weight: 400;
-  color: var(--theme-text);
+  color: var(--primary-foreground);
   margin: 0;
   // this is for the nav to be able to push the document over
   overflow-x: hidden;
 }
 
 .btn {
-  display: inline-flex;
+ /* display: inline-flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
   border-radius: 0.375rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 500;*/
   transition: colors 0.15s ease-in-out;
   &:focus-visible {
     outline: none;
@@ -146,8 +146,8 @@ body {
   }
 
   &--style-primary {
-    background-color: var(--primary);
-    color: var(--primary-foreground);
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
     &:hover {
       background-color: hsl(var(--primary) / 90);
     }
@@ -159,7 +159,7 @@ body {
   height: 100dvh;
 }
 
-.input {
+/*.input {
   display: flex;
   height: 2.5rem;
   width: 100%;
@@ -188,4 +188,4 @@ body {
     cursor: not-allowed;
     opacity: 0.5;
   }
-}
+}*/
