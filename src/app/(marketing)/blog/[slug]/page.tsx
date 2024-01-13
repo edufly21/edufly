@@ -80,7 +80,7 @@ export default async function page({ params: { slug } }: PageProps) {
   return (
     <div className="text-xl max-w-2xl ">
       <Gutter bottom>
-        <div className="mb-3 space-y-6">
+        <div className="mb-4 space-y-6">
           <h1
             className={cn("scroll-m-20 text-4xl font-bold tracking-tight")}
           >
