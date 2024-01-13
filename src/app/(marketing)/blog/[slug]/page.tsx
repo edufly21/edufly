@@ -80,15 +80,15 @@ export default async function page({ params: { slug } }: PageProps) {
   return (
     <div className="text-xl max-w-2xl ">
       <Gutter bottom>
-        <div className="mb-3 space-y-3">
+        <div className="mb-2 space-y-4">
           <h1
             className={cn("scroll-m-20 text-4xl font-bold tracking-tight")}
           >
             {blog.title}
           </h1>
-          <div className="text-smmd:text-base text-muted-foreground flex ">
+          <div className="text-sm md:text-base text-muted-foreground flex space-x-4 ">
             <p>{(blog.author as User).name}</p>
-            <Separator />
+            <Separator orientation="vertical" />
             <Moment format="MMMM Do, YYYY" className="pl-2">
               {blog.createdAt}
             </Moment>
