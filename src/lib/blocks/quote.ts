@@ -2,12 +2,12 @@ import { Block } from "payload/types";
 
 const Quote: Block = {
   slug: "quote",
-  imageURL: "http://localhost:3000/media/quote.png",
-  imageAltText: "Quote block",
+
   fields: [
     {
       name: "quote",
       type: "textarea",
+      required: true,
     },
     {
       name: "author",

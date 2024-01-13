@@ -1,5 +1,3 @@
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 
 import NextTopLoader from "nextjs-toploader";
@@ -11,7 +9,7 @@ import { ThemeProvider } from "@/contexts/theme-provider";
 
 import { siteConfig } from "@/config/site";
 import TailwindIndicator from "@/components/shared/TaillwindcssIndicator";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-ui";
 import "@/styles/globals.css";
 import { inter, sansita } from "./ui/fonts";
 
@@ -81,9 +79,6 @@ export default function RootLayout({
           sansita.variable
         )}
       >
-        <SpeedInsights />
-        <Analytics />
-
         <TailwindIndicator />
         <main className="relative min-h-screen">
           <ThemeProvider
@@ -111,8 +106,6 @@ export default function RootLayout({
           />
           <Toaster position="top-center" richColors />
           <TailwindIndicator />
-          <Analytics />
-          <SpeedInsights />
         </main>
       </body>
     </html>

@@ -6,7 +6,13 @@ const Alert: Block = {
     {
       name: "type",
       type: "select",
+      defaultValue: "default",
+      required: true,
       options: [
+        {
+          value: "default",
+          label: "Default",
+        },
         {
           value: "info",
           label: "Info",
@@ -28,6 +34,11 @@ const Alert: Block = {
     {
       name: "message",
       type: "textarea",
+      required: true,
+    },
+    {
+      name: "title",
+      type: "text",
     },
   ],
 };

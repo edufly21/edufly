@@ -20,6 +20,14 @@
     --accent-foreground: 24 9.8% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 60 9.1% 97.8%;
+    --success: 120 25.9% 47.1%;
+    --success-foreground: 60 9.1% 97.8%;
+    --info: 210 100% 50%;
+    --info-foreground: 60 9.1% 97.8%;
+    --warning: 40 100% 50%;
+    --warning-foreground: 60 9.1% 97.8%;
+    --danger: 0 84.2% 60.2%;
+    --danger-foreground: 60 9.1% 97.8%;
     --border: 20 5.9% 90%;
     --input: 20 5.9% 90%;
     --ring: 24.6 95% 53.1%;
@@ -53,6 +61,10 @@
 }
 @layer utilities {
   .min-h-full-dvh {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  .h-full-dvh {
     height: 100vh;
     height: 100dvh;
   }

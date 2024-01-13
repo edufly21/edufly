@@ -1,83 +1,118 @@
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-ui";
 
 import { CustomRenderers } from "./serialize";
 
 export const renderers: CustomRenderers = {
-  h1: ({ ...props }) => (
-    <h1
-      className={cn("mt-2 scroll-m-20 text-4xl font-bold tracking-tight")}
-      {...props}
-    />
+  h1: ({ node, Serialize }) => (
+    <h1 className={cn("mt-2 scroll-m-20 text-4xl font-bold tracking-tight")}>
+      <Serialize content={node.children} />
+    </h1>
   ),
-  h2: ({ ...props }) => (
+  h2: ({ node, Serialize }) => (
     <h2
       className={cn(
-        "mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0"
+        "mt-10 scroll-m-2 border-b pb-1 text-3xl leading-none font-semibold tracking-tight first:mt-0"
       )}
-      {...props}
-    />
+    >
+      <Serialize content={node.children} />
+    </h2>
   ),
-  h3: ({ ...props }) => (
+  h3: ({ node, Serialize }) => (
     <h3
       className={cn("mt-8 scroll-m-20 text-2xl font-semibold tracking-tight")}
-      {...props}
-    />
+    >
+      <Serialize content={node.children} />
+    </h3>
   ),
-  h4: ({ ...props }) => (
-    <h4
-      className={cn("mt-8 scroll-m-20 text-xl font-semibold tracking-tight")}
-      {...props}
-    />
+  h4: ({ node, Serialize }) => (
+    <h4 className={cn("mt-8 scroll-m-20 text-xl font-semibold tracking-tight")}>
+      <Serialize content={node.children} />
+    </h4>
   ),
-  h5: ({ ...props }) => (
-    <h5
-      className={cn("mt-8 scroll-m-20 text-lg font-semibold tracking-tight")}
-      {...props}
-    />
+  h5: ({ node, Serialize }) => (
+    <h5 className={cn("mt-8 scroll-m-20 text-lg font-semibold tracking-tight")}>
+      <Serialize content={node.children} />
+    </h5>
   ),
-  h6: ({ ...props }) => (
+  h6: ({ node, Serialize }) => (
     <h6
       className={cn("mt-8 scroll-m-20 text-base font-semibold tracking-tight")}
-      {...props}
-    />
+    >
+      <Serialize content={node.children} />
+    </h6>
   ),
-  a: ({ ...props }) => (
-    <a className={cn("font-medium underline underline-offset-4")} {...props} />
+  // a: ({ node, Serialize }) => (
+  //   <a className={cn("font-medium underline underline-offset-4")}>
+  //     <Serialize content={node.children} />
+  //   </a>
+  // ),
+
+  p: ({ node, Serialize }) => (
+    <p className={cn("leading-7 text-red-500 [&:not(:first-child)]:mt-6")}>
+      <Serialize content={node.children} />
+    </p>
   ),
-  p: ({ ...props }) => (
-    <p className={cn("leading-7 [&:not(:first-child)]:mt-6")} {...props} />
+
+  ul: ({ node, Serialize }) => (
+    <ul className={cn("my-6 ml-6 list-disc")}>
+      <Serialize content={node.children} />
+    </ul>
   ),
-  ul: ({ ...props }) => <ul className={cn("my-6 ml-6 list-disc")} {...props} />,
-  ol: ({ ...props }) => (
-    <ol className={cn("my-6 ml-6 list-decimal")} {...props} />
+  ol: ({ node, Serialize }) => (
+    <ol className={cn("my-6 ml-6 list-decimal")}>
+      <Serialize content={node.children} />
+    </ol>
   ),
-  li: ({ ...props }) => <li className={cn("mt-2")} {...props} />,
-  blockquote: ({ ...props }) => (
+
+  li: ({ node, Serialize }) => (
+    <li className={cn("mt-2")}>
+      <Serialize content={node.children} />
+    </li>
+  ),
+
+  quote: ({ node, Serialize }) => (
     <blockquote
-      className={cn("mt-6 border-l-2 pl-6 italic [&>*]:text-muted-foreground")}
-      {...props}
-    />
+      className={cn(
+        "mt-6 border-l-2 text-red-400 pl-6 italic [&>*]:text-muted-foreground"
+      )}
+    >
+      <Serialize content={node.children} />
+    </blockquote>
   ),
-  //   img: ({
-  //     className,
-  //     alt,
-  //     ...props
-  //   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-  //     // eslint-disable-next-line @next/next/no-img-element
-  //     <img className={cn("rounded-md border", className)} alt={alt} {...props} />
-  //   ),
-  hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
-  //   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
+
+  hr: (props) => <hr className="my-4 md:my-8" />,
+  code: ({ node, Serialize }) => (
+    <code
+      className={cn(
+        "relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm"
+      )}
+    >
+      <Serialize content={node.children} />
+    </code>
+  ),
+
+  // img: ({
+  //   node, Serialize
+  // }) => (
+  //   // eslint-disable-next-line @next/next/no-img-element
+  //   <img className={cn("rounded-md border", className)} alt={alt} />
+  // )
+
+  //   table: ({ className, ...props }: React.HTMLAttribute<
+
+  //HTMLTableElement>) => (
   //     <div className="my-6 w-full overflow-y-auto">
-  //       <table className={cn("w-full", className)} {...props} />
-  //     </div>
+  //       <table className={cn("w-full", className)} />
+  //     </div
+
   //   ),
   //   tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
   //     <tr
   //       className={cn("m-0 border-t p-0 even:bg-muted", className)}
-  //       {...props}
-  //     />
+  //
+  //     >
+
   //   ),
   //   th: ({ className, ...props }) => (
   //     <th
@@ -85,8 +120,9 @@ export const renderers: CustomRenderers = {
   //         "border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
   //         className
   //       )}
-  //       {...props}
-  //     />
+  //
+  //     >
+
   //   ),
   //   td: ({ className, ...props }) => (
   //     <td
@@ -94,8 +130,9 @@ export const renderers: CustomRenderers = {
   //         "border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
   //         className
   //       )}
-  //       {...props}
-  //     />
+  //
+  //     >
+
   //   ),
   //   pre: ({ className, ...props }) => (
   //     <pre
@@ -103,16 +140,8 @@ export const renderers: CustomRenderers = {
   //         "mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4",
   //         className
   //       )}
-  //       {...props}
-  //     />
-  //   ),
-  //   code: ({ className, ...props }) => (
-  //     <code
-  //       className={cn(
-  //         "relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm",
-  //         className
-  //       )}
-  //       {...props}
-  //     />
+  //
+  //     >
+
   //   ),
 };

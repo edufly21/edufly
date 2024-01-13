@@ -1,12 +1,8 @@
 import React, { Fragment } from "react";
 import escapeHTML from "escape-html";
+import { cn } from "@/lib/utils/shadcn-ui";
 
-// import { CMSLink, Reference } from "@components/CMSLink";
-// import { Highlight } from "../../Highlight";
-// import { Label } from "../../Label";
-// import { LargeBody } from "../../LargeBody";
-// import { RichTextUpload } from "../Upload";
-// import { Video } from "../Video";
+// CUSTOM ARE NOT WORKING FOR NOW
 
 type Node = {
   type: string;
@@ -104,7 +100,12 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
             );
           case "h2":
             return (
-              <h2 key={i}>
+              <h2
+                key={i}
+                className={cn(
+                  "mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0"
+                )}
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -113,7 +114,12 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
             );
           case "h3":
             return (
-              <h3 key={i}>
+              <h3
+                key={i}
+                className={cn(
+                  "mt-8 scroll-m-20 text-2xl font-semibold tracking-tight"
+                )}
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -122,7 +128,12 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
             );
           case "h4":
             return (
-              <h4 key={i}>
+              <h4
+                key={i}
+                className={cn(
+                  "mt-8 scroll-m-20 text-xl font-semibold tracking-tight"
+                )}
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -131,7 +142,12 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
             );
           case "h5":
             return (
-              <h5 key={i}>
+              <h5
+                key={i}
+                className={cn(
+                  "mt-8 scroll-m-20 text-lg font-semibold tracking-tight"
+                )}
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -140,7 +156,12 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
             );
           case "h6":
             return (
-              <h6 key={i}>
+              <h6
+                key={i}
+                className={cn(
+                  "mt-8 scroll-m-20 text-base font-semibold tracking-tight"
+                )}
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -149,7 +170,12 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
             );
           case "quote":
             return (
-              <blockquote key={i}>
+              <blockquote
+                key={i}
+                className={cn(
+                  "mt-6 border-l-2 pl-6 italic [&>*]:text-muted-foreground"
+                )}
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -158,7 +184,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
             );
           case "ul":
             return (
-              <ul key={i}>
+              <ul key={i} className={cn("my-6 ml-6 list-disc")}>
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -167,7 +193,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
             );
           case "ol":
             return (
-              <ol key={i}>
+              <ol key={i} className={cn("my-6 ml-6 list-decimal")}>
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -176,7 +202,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
             );
           case "li":
             return (
-              <li key={i}>
+              <li key={i} className={cn("mt-2")}>
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -236,7 +262,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           default:
             return (
-              <p key={i}>
+              <p key={i} className={cn("leading-7 [&:not(:first-child)]:mt-6")}>
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}

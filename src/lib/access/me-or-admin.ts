@@ -3,7 +3,7 @@ import type { FieldAccess } from "payload/types";
 
 import type { User } from "../../types/payload-types";
 
-import { checkRole } from "./../payload-utils/check-role";
+import { checkRole } from "../utils/payload/check-role";
 
 export const isMeOrAdmin: Access = ({ req }) => {
   const user: User | undefined = req.user as User | undefined;

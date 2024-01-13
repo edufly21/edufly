@@ -1,5 +1,5 @@
 import type { Icon } from "@/components/icons/";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-ui";
 import Link from "next/link";
 
 interface LogoWithNameProps {

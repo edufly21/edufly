@@ -5,6 +5,7 @@ import { admin } from "../access/admin";
 export const Media: CollectionConfig = {
   slug: "media",
   access: {
+    create: admin,
     read: admin,
     delete: admin,
     update: admin,

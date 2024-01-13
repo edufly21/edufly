@@ -1,31 +1,72 @@
 import { Blog } from "@/types/payload-types";
-import { CollectionBeforeChangeHook, CollectionConfig } from "payload/types";
+import {
+  CollectionAfterChangeHook,
+  CollectionBeforeChangeHook,
+  CollectionConfig,
+} from "payload/types";
+import slugify from "slugify";
 import { admin } from "../access/admin";
 import { anyone } from "../access/anyone";
 import Alert from "../blocks/alert";
 import Content from "../blocks/content";
 import Quote from "../blocks/quote";
+import { nanoid } from "nanoid";
 
 const addSlug: CollectionBeforeChangeHook = async ({ data, operation }) => {
-  if (operation === "update") return data;
-
   const blog = data as Blog;
-  const slug = slugify(blog.BlogMeta.title);
+  const slug = slugify(blog.title);
 
   return {
     ...data,
-    slug,
+    slug: `${slug}-${nanoid(4)}`,
   };
+};
+
+const addAuthor: CollectionBeforeChangeHook = async ({ req, data }) => {
+  const user = req.user;
+
+  return { ...data, author: user.id };
+};
+
+const syncUser: CollectionAfterChangeHook<Blog> = async ({ req, doc }) => {
+  const fullUser = await req.payload.findByID({
+    collection: "users",
+    id: req.user.id,
+  });
+
+  if (fullUser && typeof fullUser === "object") {
+    const { blogs } = fullUser;
+
+    const allIDs = [
+      ...(blogs?.map((blog) => (typeof blog === "object" ? blog.id : blog)) ||
+        []),
+    ];
+
+    const createdBlogsIDs = allIDs.filter(
+      (id, index) => allIDs.indexOf(id) === index
+    );
+
+    const dataToUpdate = [...createdBlogsIDs, doc.id];
+
+    await req.payload.update({
+      collection: "users",
+      id: fullUser.id,
+      data: {
+        blogs: dataToUpdate,
+      },
+    });
+  }
 };
 
 export const Blogs: CollectionConfig = {
   slug: "blogs",
   admin: {
-    // defaultColumns: ["title", "author", "category", "tags", "status"],
     useAsTitle: "title",
+    defaultColumns: ["title", "createdAt"],
   },
   hooks: {
-    beforeChange: [addSlug],
+    beforeChange: [addSlug, addAuthor],
+    afterChange: [syncUser],
   },
   access: {
     read: anyone,
@@ -35,39 +76,41 @@ export const Blogs: CollectionConfig = {
   },
   fields: [
     {
-      name: "BlogMeta",
-      type: "group",
-      fields: [
-        {
-          name: "title",
-          type: "text",
-          required: true,
-          minLength: 20,
-          maxLength: 100,
-        },
-        {
-          name: "description",
-          type: "textarea",
-          required: true,
-          minLength: 40,
-          maxLength: 160,
-        },
-        {
-          name: "keywords",
-          label: "Keywords",
-          type: "text",
-        },
-      ],
+      name: "title",
+      type: "text",
+      required: true,
+      admin: {
+        description:
+          "Title should be catchy, descriptive, and not too long: just around 20-100 characters.",
+      },
     },
+    {
+      name: "description",
+      type: "textarea",
+      required: true,
 
+      admin: {
+        description:
+          "Description should be short, descriptive, and not too long: just around 40-160 characters.",
+      },
+    },
+    {
+      name: "keywords",
+      label: "Keywords",
+      type: "text",
+      admin: {
+        description:
+          "Keywords help search engines understand what your blog is about. Separate keywords with a comma.",
+      },
+    },
     {
       type: "tabs",
       tabs: [
         {
-          label: "Post Media",
+          label: "Blog Media",
           fields: [
             {
-              name: "postImage",
+              name: "blogImage",
               type: "upload",
               relationTo: "media",
               required: true,
@@ -75,7 +118,7 @@ export const Blogs: CollectionConfig = {
           ],
         },
         {
-          label: "Post Layout",
+          label: "Blog Layout",
           fields: [
             {
               name: "layout",
@@ -86,58 +129,29 @@ export const Blogs: CollectionConfig = {
         },
       ],
     },
-    // {
-    //   name: "status",
-    //   type: "select",
-    //   options: [
-    //     {
-    //       value: "draft",
-    //       label: "Draft",
-    //     },
-    //     {
-    //       value: "published",
-    //       label: "Published",
-    //     },
-    //   ],
-    //   defaultValue: "draft",
-    //   admin: {
-    //     position: "sidebar",
-    //   },
-    // },
+
     {
-      name: "publishedDate",
-      type: "date",
+      name: "slug",
+      type: "text",
+      access: {
+        create: () => false,
+        read: () => false,
+        update: () => false,
+      },
       admin: {
-        position: "sidebar",
+        hidden: true,
       },
     },
     {
       name: "author",
       type: "relationship",
       relationTo: "users",
+      required: true,
+      hasMany: false,
       admin: {
-        position: "sidebar",
+        condition: () => false,
       },
     },
     // {
-    //   name: "category",
-    //   type: "relationship",
-    //   relationTo: "categories",
-    //   admin: {
-    //     position: "sidebar",
-    //   },
-    // },
-    // {
-    //   name: "tags",
-    //   type: "relationship",
-    //   relationTo: "tags",
-    //   hasMany: true,
-    //   admin: {
-    //     position: "sidebar",
-    //   },
-    // },
   ],
 };
-function slugify(title: any) {
-  throw new Error("Function not implemented.");
-}

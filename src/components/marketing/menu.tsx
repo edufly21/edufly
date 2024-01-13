@@ -2,7 +2,7 @@
 import * as React from "react";
 import Link from "next/link";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-ui";
 import { usePreventScroll } from "@/hooks/use-prevent-scroll";
 import { Button } from "../ui/button";
 import { Close, Menu as MenuIcon } from "../icons";

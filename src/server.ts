@@ -1,8 +1,8 @@
 import express from "express";
 import { getPayloadClient } from "./get-payload";
-import { nextApp, nextHandler } from "./lib/next-utils";
+import { nextApp, nextHandler } from "./lib/utils/nextjs";
 import * as trpcExpress from "@trpc/server/adapters/express";
-import { appRouter } from "./trpc";
+import { appRouter } from "./trpc/routers";
 import { inferAsyncReturnType } from "@trpc/server";
 import bodyParser from "body-parser";
 import { IncomingMessage } from "http";
@@ -11,7 +11,7 @@ import nextBuild from "next/dist/build";
 import path from "path";
 import { PayloadRequest } from "payload/types";
 import { parse } from "url";
-import email from "./lib/transport";
+import email from "./lib/email-transport";
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;

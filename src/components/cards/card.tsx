@@ -33,7 +33,7 @@ export default function Card({
 }: CardProps) {
   const { addItem } = useCart();
   return (
-    <RootCard className="max-w-[176px]   flex flex-col gap-2">
+    <RootCard className="max-w-[176px] flex flex-col gap-1">
       <div className="h-44 w-44 relative rounded-md">
         <Image
           src={`https://source.unsplash.com/random/256x256r=${Math.random()}`}
@@ -44,19 +44,19 @@ export default function Card({
         />
       </div>
 
-      <CardHeader className="p-0">
+      <CardHeader className="px-1 py-0">
         <CardTitle className="text-lg leading-none line-clamp-2">
           Create project Lorem ipsum dolor sit amet consectetur, adipisicing
           elit. Dolore!
         </CardTitle>
-        <CardDescription className="line-clamp-3  leading-none">
+        {/* <CardDescription className="line-clamp-3  leading-none">
           Deploy your new project in one-click. Lorem ipsum dolor sit amet,
           consectetur adipisicing elit. Laboriosam sint sit magni unde excepturi
           quo.
-        </CardDescription>
+        </CardDescription> */}
       </CardHeader>
-      <CardContent className="p-0">
-        <div className="flex items-center gap-2">
+      <CardContent className="px-1 py-1">
+        <div className="flex items-center gap-1">
           <Rating
             name="read-only"
             value={4.5}
@@ -67,7 +67,7 @@ export default function Card({
           <span className="bg-muted text-xs px-2 py-1">4.5</span>
         </div>
       </CardContent>
-      <CardFooter className="p-0 flex justify-between">
+      <CardFooter className="py-0 px-1 flex justify-between">
         <div className="flex flex-col">
           <span className="text-sm text-red-500 italic  line-through mr-2">
             $200

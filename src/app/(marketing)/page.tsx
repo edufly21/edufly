@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <section>
       <DealCallOut />
-      <Gutter className="mt-4">
+      <Gutter top bottom>
         <div>
           <h2 className="text-xl mb-4 text-center  md:text-2xl font-bold tracking-tight ">
             Products

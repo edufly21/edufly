@@ -9,6 +9,7 @@
 export interface Config {
   collections: {
     users: User;
+    products: Product;
     blogs: Blog;
     media: Media;
     'payload-preferences': PayloadPreference;
@@ -18,8 +19,10 @@ export interface Config {
 }
 export interface User {
   id: string;
-  role: 'user' | 'admin';
   name: string;
+  blogs?: (string | Blog)[] | null;
+  products?: (string | Product)[] | null;
+  role: 'admin' | 'user';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -35,16 +38,14 @@ export interface User {
 }
 export interface Blog {
   id: string;
-  BlogMeta: {
-    title: string;
-    description: string;
-    keywords?: string | null;
-  };
-  postImage: string | Media;
+  title: string;
+  description: string;
+  keywords?: string | null;
+  blogImage: string | Media;
   layout?:
     | (
         | {
-            quote?: string | null;
+            quote: string;
             author?: string | null;
             id?: string | null;
             blockName?: string | null;
@@ -61,15 +62,16 @@ export interface Blog {
             blockType: 'content';
           }
         | {
-            type?: ('info' | 'success' | 'warning' | 'danger') | null;
-            message?: string | null;
+            type: 'default' | 'info' | 'success' | 'warning' | 'danger';
+            message: string;
+            title?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'alert';
           }
       )[]
     | null;
-  publishedDate?: string | null;
+  slug?: string | null;
   author?: (string | null) | User;
   updatedAt: string;
   createdAt: string;
@@ -85,32 +87,17 @@ export interface Media {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    card?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    tablet?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
+}
+export interface Product {
+  id: string;
+  user?: (string | null) | User;
+  name: string;
+  description?: string | null;
+  price: number;
+  paystackId?: string | null;
+  image: string | Media;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface PayloadPreference {
   id: string;

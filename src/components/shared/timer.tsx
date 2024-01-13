@@ -1,6 +1,6 @@
 import { useTimer } from "react-timer-hook";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-ui";
 
 interface TimerProps {
   expiryTimestamp: Date;
