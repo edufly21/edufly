@@ -14,7 +14,7 @@ import { nanoid } from "nanoid";
 
 const addSlug: CollectionBeforeChangeHook = async ({ data, operation }) => {
   const blog = data as Blog;
-  const slug = slugify(blog.title);
+  const slug = slugify(blog.title, {remove: /[*+~.()'"!:@]/g, strict: true, lower: true});
 
   return {
     ...data,
