@@ -12,7 +12,7 @@ export const renderers: CustomRenderers = {
   h2: ({ node, Serialize }) => (
     <h2
       className={cn(
-        "mt-10 scroll-m-2 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0"
+        "mt-8 scroll-m-2 pb-1 text-3xl font-semibold tracking-tight"
       )}
     >
       <Serialize content={node.children} />
@@ -49,7 +49,7 @@ export const renderers: CustomRenderers = {
   // ),
 
   p: ({ node, Serialize }) => (
-    <p className={cn("leading-7 text-red-500 [&:not(:first-child)]:mt-6")}>
+    <p className={cn("leading-7 text-red-500 mt-6")}>
       <Serialize content={node.children} />
     </p>
   ),
