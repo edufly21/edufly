@@ -110,11 +110,11 @@ export default async function page({ params: { slug } }: PageProps) {
   return (
     
     <article className="text-xl max-w-2xl">
-      <script
+      {/*  <script
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLd}
         key="blog-jsonld"
-        />
+        />*/}
       <Gutter bottom>
         <div className="mb-4 space-y-6">
           <h1
