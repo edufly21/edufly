@@ -5,9 +5,9 @@ $breakpoint-s-width: 768px ;
 $breakpoint-m-width: 1024px;
 $breakpoint-l-width: 1440px !default;
 
-$style-radius-s: 0.5rem - 4px ;
-$style-radius-m: 0.5rem - 2px ;
-$style-radius-l: 0.5rem ;
+$style-radius-s: 6px ;
+$style-radius-m: 8px ;
+$style-radius-l: 10px ;
 $style-stroke-width: 1px ;
 
 :root {
@@ -91,22 +91,22 @@ $style-stroke-width: 1px ;
 
 html {
   @extend %body;
-  background: var(--background);
+  background: var(--theme-bg);
   -webkit-font-smoothing: antialiased;
 
   &[data-theme="dark"] {
-    --theme-bg: hsl(var(222.2 84% 4.9%));
-    --theme-text: hsl(var(210 40% 98%));
+    --theme-bg: hsl(222.2 84% 4.9%);
+    --theme-text: hsl(210 40% 98%);
     --theme-input-bg: hsl(217.2 32.6% 17.5%);
     --theme-overlay: rgba(5, 5, 5, 0.75);
     color-scheme: dark;
 
     ::selection {
-      color: var(--primary/90);
+      color: hsl(var(--primary/90));
     }
 
     ::-moz-selection {
-      color: var(--primary/90);
+      color: hsl(var(--primary/90));
     }
   }
 
@@ -136,8 +136,8 @@ body {
   &:focus-visible {
     outline: none;
     box-shadow:
-      0 0 0 2px var(--ring),
-      0 0 0 2px var(--primary);
+      0 0 0 2px hsl(var(--ring)),
+      0 0 0 2px hsl(var(--primary));
   }
 
   &:disabled {
