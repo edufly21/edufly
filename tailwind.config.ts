@@ -60,7 +60,7 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        inter: ["var(--font-inter)", ...fontFamily.sans],
+        sans: ["var(--font-sans)", ...fontFamily.sans],
         sansita: ["var(--font-sansita)", ...fontFamily.sans],
       },
       backgroundImage: {
