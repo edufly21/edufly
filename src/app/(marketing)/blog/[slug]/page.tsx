@@ -102,7 +102,7 @@ export default async function page({ params: { slug } }: PageProps) {
       "url": "/logo.svg"
     }
   },
-  "keywords": blog.keywords?.split(","),
+  //"keywords": blog.keywords?.split(","),
   //"articleBody": "Main content of your blog post goes here." TODO: Serialize blog content
 }
 
