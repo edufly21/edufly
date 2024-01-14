@@ -34,7 +34,7 @@ export default async function BlogPage() {
               key={blog.id}
               className="group relative flex flex-col space-y-2"
             >
-              {blog.image && (
+              
                 <Image
                   src={(blog.blogImage as Media).url}
                   alt={blog.title}
@@ -43,7 +43,7 @@ export default async function BlogPage() {
                   className="rounded-md border bg-muted transition-colors"
                   priority={index <= 1}
                 />
-              )}
+              
               <h2 className="text-2xl font-extrabold">{blog.title}</h2>
               
                 <p className="line-clamp-4 text-muted-foreground">{blog.description}</p>
