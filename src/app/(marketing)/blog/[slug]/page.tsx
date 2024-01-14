@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link"
+import Image from "next/image"
 import { ChevronLeft } from "@/components/icons"
 import { getPayloadClient } from "@/get-payload";
 import { notFound } from "next/navigation";
@@ -48,13 +49,13 @@ export async function generateMetadata({
       title: blog.title,
       description: blog.description,
       siteName: siteConfig.name,
-      images: [`${siteConfig.url}/media/${(blog.blogImage as Media).filename}`]
+      images: [`${(blog.blogImage as Media).url}`]
     },
     twitter: {
       card: "summary_large_image",
       title: blog.title,
       description: blog.description,
-      images: `/media/${(blog.blogImage as Media).filename}`,
+      images: `${(blog.blogImage as Media).url}`,
       creator: (blog.author as User).name,
     },
   };
@@ -147,6 +148,16 @@ export default async function page({ params: { slug } }: PageProps) {
             
           
         </div>
+
+        <Image
+          src={`${(blog.blogImage as Media).url}`}
+          alt={blog.title}
+          width={720}
+          height={405}
+          className="my-8 rounded-md border bg-muted transition-colors"
+          priority
+        />
+         
         <RenderBlocks layout={blog.layout} />
 
         <hr className="mt-12" />
