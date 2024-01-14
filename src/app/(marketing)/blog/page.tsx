@@ -53,7 +53,7 @@ export default async function BlogPage() {
                   <Moment format="MMMM Do, YYYY" date={blog.createdAt}/>
                 </p>
               
-              <Link href={`/blog/${slug}`} className="absolute inset-0">
+              <Link href={`/blog/${blog.slug}`} className="absolute inset-0">
                 <span className="sr-only">View Article</span>
               </Link>
             </article>
