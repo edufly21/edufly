@@ -30,7 +30,7 @@ dotenv.config({
 // });
 
 export default buildConfig({
-  serverURL: process.env.next_PUBLIC_SERVER_URL || "",
+  serverURL: process.env.next_PUBLIC_SERVER_URL! || "",
   collections: [Users, Products, Blogs, Media],
   routes: {
     admin: "/dashboard",
@@ -42,8 +42,8 @@ export default buildConfig({
 
     meta: {
       titleSuffix: ` - ${siteConfig.name}`,
-      favicon: "/favicon.ico",
-      ogImage: "/og-image.svg",
+      favicon: `${siteConfig.url}/favicon.ico`,
+      ogImage: `${siteConfig.url}/og-image.svg`,
     },
     components: {
       // beforeLogin: [BeforeLogin],
