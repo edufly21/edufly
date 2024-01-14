@@ -1,15 +1,16 @@
 import React from "react";
+import Link from "next/link"
+import { ChevronLeft } from "@/components/icons"
 import { getPayloadClient } from "@/get-payload";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Media, User } from "@/types/payload-types";
 import { siteConfig } from "@/config/site";
 import RenderBlocks from "@/components/blocks/render-blocks.";
-import Gutter from "@/components/shared/gutter";
 import { cn } from "@/lib/utils/shadcn-ui";
 import Moment from "@/components/shared/moment";
 import { Separator } from "@/components/ui/separator";
-
+import {buttonVariants} from "@/components/ui/button"
 interface PageProps {
   params: {
     slug: string;
@@ -109,29 +110,52 @@ export default async function page({ params: { slug } }: PageProps) {
 
   return (
     
-    <article className="text-xl max-w-2xl">
+    <article className="container relative max-w-3xl py-6 lg:py-10">
       {/*  <script
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLd}
         key="blog-jsonld"
-        />*/}
-      <Gutter bottom>
-        <div className="mb-4 space-y-6">
+        />*/}        
+        <Link
+        href="/blog"
+        className={cn(
+          buttonVariants({ variant: "ghost" }),
+          "absolute left-[-200px] top-14 hidden xl:inline-flex"
+        )}
+      >
+        <ChevronLeft className="mr-2 h-4 w-4" />
+        See all posts
+      </Link>
+        
+        <div className="mb-8">
+          
+          <p
+            className="block text-sm text-muted-foreground"
+          >
+            Published on <Moment format="MMMM Do, YYYY" date={blog.createdAt}/>
+              
+          </p>
+        
           <h1
-            className={cn("scroll-m-20 text-4xl font-bold tracking-tight")}
+            className={cn("mt-2 scroll-m-20 text-4xl font-bold tracking-tight")}
           >
             {blog.title}
           </h1>
-          <div className="flex h-5 items-center space-x-2">
-            <p className="text-sm text-muted-foreground">{(blog.author as User).name}</p>
-            <Separator orientation="vertical" />
-            <Moment format="MMMM Do, YYYY" className="text-sm text-muted-foreground">
-              {blog.createdAt}
-            </Moment>
-          </div>
+          
+            <p className="mt-4 text-sm text-muted-foreground">By: {(blog.author as User).name}</p>
+            
+            
+          
         </div>
         <RenderBlocks layout={blog.layout} />
-      </Gutter>
+
+        <hr className="mt-12" />
+      <div className="flex justify-center py-6 lg:py-10">
+        <Link href="/blog" className={cn(buttonVariants({ variant: "ghost" }))}>
+          <ChevronLeft className="mr-2 h-4 w-4" />
+          See all posts
+        </Link>
+      </div>
     </article>
   );
 }
