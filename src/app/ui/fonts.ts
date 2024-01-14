@@ -1,11 +1,11 @@
-import { Inter } from "next/font/google";
+import { Inter as FontSans } from "next/font/google";
 import { Sansita } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const sansita = Sansita({
+const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
+const fontSansita = Sansita({
   subsets: ["latin"],
   weight: ["400", "700", "900"],
   variable: "--font-sansita",
 });
 
-export { inter, sansita };
+export { fontSans, fontSansita };
