@@ -149,14 +149,14 @@ export default async function page({ params: { slug } }: PageProps) {
           
         </div>
 
-        <Image
+      {/* <Image
           src={`${(blog.blogImage as Media).url}`}
           alt={blog.title}
           width={720}
           height={405}
           className="my-8 rounded-md border bg-muted transition-colors"
           priority
-        />
+        />*/}
          
         <RenderBlocks layout={blog.layout} />
 
