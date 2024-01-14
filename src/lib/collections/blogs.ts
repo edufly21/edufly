@@ -135,7 +135,7 @@ export const Blogs: CollectionConfig = {
       type: "text",
       required: true,
       admin: {
-        condition: false,
+        condition: () => false,
       },
     },
     {
