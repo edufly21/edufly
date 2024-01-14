@@ -47,6 +47,7 @@ export async function generateMetadata({
       title: blog.title,
       description: blog.description,
       siteName: siteConfig.name,
+      images: [`${siteConfig.url}/media/${(blog.blogImage as Media).filename}`]
     },
     twitter: {
       card: "summary_large_image",
@@ -77,8 +78,43 @@ export default async function page({ params: { slug } }: PageProps) {
     notFound();
   }
 
+  const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `${siteConfig.url}/blog/${slug}`
+  },
+  "headline": blog.title,
+  "description": blog.description,
+  "image": `${siteConfig.url}/media/${(blog.blogImage as Media).filename}`,
+  "datePublished": blog.createdAt,
+  "dateModified": blog.updatedAt,
+  "author": {
+    "@type": "Person",
+    "name": (blog.author as User).name
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": siteConfig.name,
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/logo.svg"
+    }
+  },
+  "keywords": blog.keywords.split(","),
+  //"articleBody": "Main content of your blog post goes here." TODO: Serialize blog content
+}
+
+
   return (
-    <div className="text-xl max-w-2xl ">
+    
+    <article className="text-xl max-w-2xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd}
+        key="blog-jsonld"
+        />
       <Gutter bottom>
         <div className="mb-4 space-y-6">
           <h1
@@ -96,6 +132,6 @@ export default async function page({ params: { slug } }: PageProps) {
         </div>
         <RenderBlocks layout={blog.layout} />
       </Gutter>
-    </div>
+    </article>
   );
 }
