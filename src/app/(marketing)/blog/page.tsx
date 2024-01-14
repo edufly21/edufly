@@ -21,12 +21,12 @@ export default async function BlogPage() {
           <h1 className="inline-block font-heading text-4xl tracking-tight lg:text-5xl">
             Blogs
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg text-muted-foreground">
             Grab a comfy seat! Our blogs are like a chat with a friend—casual, fun, and full of interesting stuff. Enjoy the read!
           </p>
         </div>
       </div>
-      <hr className="my-8" />
+      <hr className="my-8 bg-muted" />
       {blogs?.length ? (
         <div className="grid gap-10 sm:grid-cols-2">
           {blogs.map((blog, index) => (
