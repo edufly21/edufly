@@ -26,7 +26,7 @@ export default async function BlogPage() {
           </p>
         </div>
       </div>
-      <hr className="my-8 bg-slate-300 bg-slate-800" />
+      <hr className="my-8 bg-slate-300 bg-slate-900" />
       {blogs?.length ? (
         <div className="grid gap-10 sm:grid-cols-2">
           {blogs.map((blog, index) => (
