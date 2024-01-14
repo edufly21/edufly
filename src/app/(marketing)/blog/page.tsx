@@ -26,7 +26,7 @@ export default async function BlogPage() {
           </p>
         </div>
       </div>
-      <hr className="my-8 bg-muted" />
+      <hr className="my-8 bg-muted-foreground text-muted-foreground" />
       {blogs?.length ? (
         <div className="grid gap-10 sm:grid-cols-2">
           {blogs.map((blog, index) => (
