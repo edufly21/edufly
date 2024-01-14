@@ -43,7 +43,7 @@ export default async function BlogPage() {
                   className="rounded-md border bg-muted transition-colors"
                   priority={index <= 1}
                 />
-              {blogImage.url}
+              {`${(blog.blogImage as Media).url}`}
               <h2 className="text-2xl font-extrabold">{blog.title}</h2>
               
                 <p className="line-clamp-4 text-muted-foreground">{blog.description}</p>
