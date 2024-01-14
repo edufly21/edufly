@@ -62,7 +62,7 @@ export const Blogs: CollectionConfig = {
   slug: "blogs",
   admin: {
     useAsTitle: "title",
-    defaultColumns: ["title", "createdAt"],
+    defaultColumns: ["title", "slug", "createdAt"],
   },
   hooks: {
     beforeChange: [addSlug, addAuthor],
@@ -133,13 +133,9 @@ export const Blogs: CollectionConfig = {
     {
       name: "slug",
       type: "text",
-      access: {
-        create: () => false,
-        read: () => false,
-        update: () => false,
-      },
+      required: true,
       admin: {
-        hidden: true,
+        condition: false,
       },
     },
     {
