@@ -36,7 +36,7 @@ export default async function BlogPage() {
             >
               
                 <Image
-                  src={(blog.blogImage as Media).url}
+                  src={`${(blog.blogImage as Media).url}`}
                   alt={blog.title}
                   width={804}
                   height={452}
