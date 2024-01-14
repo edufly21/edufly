@@ -124,7 +124,7 @@ export default async function page({ params: { slug } }: PageProps) {
         )}
       >
         <ChevronLeft className="mr-2 h-4 w-4" />
-        See all posts
+        See all blogs
       </Link>
         
         <div className="mb-8">
@@ -137,7 +137,7 @@ export default async function page({ params: { slug } }: PageProps) {
           </p>
         
           <h1
-            className={cn("mt-2 scroll-m-20 text-4xl font-bold tracking-tight")}
+            className={cn("mt-2 scroll-m-20 text-4xl lg:text-5xl font-bold tracking-tight")}
           >
             {blog.title}
           </h1>
@@ -153,7 +153,7 @@ export default async function page({ params: { slug } }: PageProps) {
       <div className="flex justify-center py-6 lg:py-10">
         <Link href="/blog" className={cn(buttonVariants({ variant: "ghost" }))}>
           <ChevronLeft className="mr-2 h-4 w-4" />
-          See all posts
+          See all blogs
         </Link>
       </div>
     </article>
