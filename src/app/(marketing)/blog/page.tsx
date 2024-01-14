@@ -37,7 +37,7 @@ export default async function BlogPage() {
               
                 <Image
                   src={`${(blog.blogImage as Media).url}`}
-                  alt={blog.blogImage.alt}
+                  alt={blog.title}
                   width={804}
                   height={452}
                   className="rounded-md border bg-muted transition-colors"
