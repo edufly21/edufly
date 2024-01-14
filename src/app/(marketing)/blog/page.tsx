@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { Media, User } from "@/types/payload-types";
 import {getPayloadClient} from "@/get-payload"
 import Moment from "@/components/shared/moment";
 export const metadata = {
