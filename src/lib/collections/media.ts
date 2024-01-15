@@ -19,5 +19,13 @@ export const Media: CollectionConfig = {
     staticURL: "/media",
     mimeTypes: ["image/*"],
   },
+  fields: [
+    {
+      name: "alt",
+      type: "text",
+    },
+  ],
+    
+  
 
 };
