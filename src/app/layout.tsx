@@ -8,7 +8,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/contexts/theme-provider";
 
 import { siteConfig } from "@/config/site";
-import TailwindIndicator from "@/components/shared/TaillwindcssIndicator";
+import TailwindIndicator from "@/components/shared/tailwindcss-indicator";
 import { cn } from "@/lib/utils/shadcn-ui";
 import "@/styles/globals.css";
 import { inter, sansita } from "./ui/fonts";
