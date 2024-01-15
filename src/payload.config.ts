@@ -18,16 +18,16 @@ dotenv.config({
   path: path.resolve(__dirname, "../.env"),
 });
 
-// const storageAdapter = s3Adapter({
-//   config: {
-//     endpoint: process.env.AWS_S3_API_ENDPOINT!,
-//     credentials: {
-//       accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID!,
-//       secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY!,
-//     },
-//   },
-//   bucket: process.env.AWS_S3_BUCKET_NAME!,
-// });
+const storageAdapter = s3Adapter({
+   config: {
+     endpoint: process.env.AWS_S3_API_ENDPOINT!,
+     credentials: {
+       accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID!,
+       secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY!,
+     },
+   },
+   bucket: process.env.AWS_S3_BUCKET_NAME!,
+ });
 
 export default buildConfig({
   serverURL: process.env.next_PUBLIC_SERVER_URL! || "",
@@ -61,15 +61,15 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(__dirname, "./types/payload-types.ts"),
   },
-  // plugins: [
-  //   cloudStorage({
-  //     collections: {
-  //       media: {
-  //         adapter: storageAdapter, // see docs for the adapter you want to use
-  //       },
-  //     },
-  //   }),
-  // ],
+   plugins: [
+     cloudStorage({
+       collections: {
+         media: {
+           adapter: storageAdapter, // see docs for the adapter you want to use
+         },
+       },
+     }),
+   ],
   upload: {
     limits: {
       fileSize: 5000000, // 5MB
