@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import Rating from "@mui/material/Rating";
 import {
-  Card as RootCard,
+  Card,
   CardContent,
   CardDescription,
   CardFooter,
@@ -13,8 +13,9 @@ import {
 } from "@/components/ui/card";
 import { Button } from "../ui/button";
 import { useCart } from "@/hooks/use-cart";
+import { Product } from "../../types/payload-types";
 
-interface CardProps {
+interface ProductProps {
   title: string;
   discriotion?: string;
   image?: string;
@@ -23,17 +24,17 @@ interface CardProps {
   discount?: number;
 }
 
-export default function Card({
+export default function Product({
   title,
   discriotion,
   image,
   ratings,
   price,
   discount,
-}: CardProps) {
+}: ProductProps) {
   const { addItem } = useCart();
   return (
-    <RootCard className="max-w-[176px] flex flex-col gap-1">
+    <Card className="max-w-[176px] flex flex-col gap-1">
       <div className="h-44 w-44 relative rounded-md">
         <Image
           src={`https://source.unsplash.com/random/256x256r=${Math.random()}`}
@@ -78,6 +79,6 @@ export default function Card({
           Buy
         </Button>
       </CardFooter>
-    </RootCard>
+    </Card>
   );
 }

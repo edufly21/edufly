@@ -3,7 +3,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { Button, buttonVariants } from "../ui/button";
 import { Search, User, ShoppingCart } from "../icons";
-import Cart from "../shared/cart";
+import Cart from "./cart";
 import { getCurrentUser } from "@/lib/utils/payload/get-current-user";
 import {
   DropdownMenu,

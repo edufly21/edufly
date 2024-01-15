@@ -14,7 +14,11 @@ import { nanoid } from "nanoid";
 
 const addSlug: CollectionBeforeChangeHook = async ({ data, operation }) => {
   const blog = data as Blog;
-  const slug = slugify(blog.title, {remove: /[*+~.()'"!:@]/g, strict: true, lower: true});
+  const slug = slugify(blog.title, {
+    remove: /[*+~.()'"!:@]/g,
+    strict: true,
+    lower: true,
+  });
 
   return {
     ...data,
@@ -102,6 +106,36 @@ export const Blogs: CollectionConfig = {
         description:
           "Keywords help search engines understand what your blog is about. Separate keywords with a comma.",
       },
+      required: true,
+    },
+    {
+      name: "tags",
+      type: "text",
+      admin: {
+        description:
+          "Tags relate your blog to other blogs on the same topic. Separate tags with a comma.",
+        position: "sidebar",
+      },
+      required: true,
+    },
+    {
+      name: "status",
+      type: "select",
+      options: [
+        {
+          value: "draft",
+          label: "Draft",
+        },
+        {
+          value: "published",
+          label: "Published",
+        },
+      ],
+      defaultValue: "published",
+      admin: {
+        position: "sidebar",
+      },
+      required: true,
     },
     {
       type: "tabs",

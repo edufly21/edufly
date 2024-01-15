@@ -1,16 +1,19 @@
-import Image from "next/image"
-import Link from "next/link"
-import { Media, User } from "@/types/payload-types";
-import {getPayloadClient} from "@/get-payload"
-import Moment from "@/components/shared/moment";
+import Blog from "@/components/cards/blog";
+import { getPayloadClient } from "@/get-payload";
+
 export const metadata = {
   title: "Blog",
-}
+};
 
 export default async function BlogPage() {
-  const payload = await getPayloadClient()
+  const payload = await getPayloadClient();
   const { docs: blogs } = await payload.find({
     collection: "blogs",
+    where: {
+      status: {
+        equals: "published",
+      },
+    },
     depth: 1,
   });
 
@@ -22,46 +25,21 @@ export default async function BlogPage() {
             Blogs
           </h1>
           <p className="text-lg text-muted-foreground">
-            Grab a comfy seat! Our blogs are like a chat with a friend—casual, fun, and full of interesting stuff. Enjoy the read!
+            Grab a comfy seat! Our blogs are like a chat with a friend—casual,
+            fun, and full of interesting stuff. Enjoy the read!
           </p>
         </div>
       </div>
-      <hr className="my-8 bg-slate-300 bg-slate-900" />
+      <hr className="my-8 bg-slate-300 dark:bg-slate-700" />
       {blogs?.length ? (
         <div className="grid gap-10 sm:grid-cols-2">
           {blogs.map((blog, index) => (
-            <article
-              key={blog.id}
-              className="group relative flex flex-col space-y-2"
-            >
-              
-                <Image
-                  src={`${(blog.blogImage as Media).url}`}
-                  alt={blog.title}
-                  width={804}
-                  height={452}
-                  className="rounded-md border bg-muted transition-colors"
-                  priority={index <= 1}
-                />
-              {`${(blog.blogImage as Media).url}`}
-              <h2 className="text-2xl font-extrabold">{blog.title}</h2>
-              
-                <p className="line-clamp-4 text-muted-foreground">{blog.description}</p>
-              
-              
-                <p className="text-sm text-muted-foreground">
-                  <Moment format="MMMM Do, YYYY" date={blog.createdAt}/>
-                </p>
-              
-              <Link href={`/blog/${blog.slug}`} className="absolute inset-0">
-                <span className="sr-only">View Article</span>
-              </Link>
-            </article>
+            <Blog key={blog.id} index={index} {...blog} />
           ))}
         </div>
       ) : (
         <p>No blogs published.</p>
       )}
     </div>
-  )
+  );
 }

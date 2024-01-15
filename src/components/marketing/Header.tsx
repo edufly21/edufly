@@ -2,12 +2,12 @@ import React from "react";
 import NavMenu from "@/components/marketing/NavMenu";
 
 import { siteConfig } from "@/config/site";
-import LogoWithName from "../shared/LogoWithName";
+import LogoWithName from "../shared/logo-with-name";
 import { Menu } from "./menu";
 import MobileNav from "./mobile-nav";
 import Link from "next/link";
 import { User, List, Image as ImageIcon } from "../icons";
-import Cart from "../shared/cart";
+import Cart from "./cart";
 
 export default function Header() {
   return (

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import SignUpForm from "@/components/auth/signup-form";
 
-import LogoWithName from "@/components/shared/LogoWithName";
+import LogoWithName from "@/components/shared/logo-with-name";
 import { siteConfig } from "@/config/site";
 import type { Metadata } from "next";
 

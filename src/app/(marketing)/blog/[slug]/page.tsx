@@ -1,17 +1,17 @@
-import React from "react";
-import Link from "next/link"
-import Image from "next/image"
-import { ChevronLeft } from "@/components/icons"
-import { getPayloadClient } from "@/get-payload";
-import { notFound } from "next/navigation";
-import type { Metadata } from "next";
-import { Media, User } from "@/types/payload-types";
-import { siteConfig } from "@/config/site";
 import RenderBlocks from "@/components/blocks/render-blocks.";
-import { cn } from "@/lib/utils/shadcn-ui";
+import { ChevronLeft } from "@/components/icons";
 import Moment from "@/components/shared/moment";
-import { Separator } from "@/components/ui/separator";
-import {buttonVariants} from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button";
+import { siteConfig } from "@/config/site";
+import { getPayloadClient } from "@/get-payload";
+import { cn } from "@/lib/utils/shadcn-ui";
+import { Media, User } from "@/types/payload-types";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import Plain from "slate-plain-serializer";
+
 interface PageProps {
   params: {
     slug: string;
@@ -48,8 +48,7 @@ export async function generateMetadata({
       url: `siteConfig.url/blog/${slug}`,
       title: blog.title,
       description: blog.description,
-      siteName: siteConfig.name,
-      images: [`${(blog.blogImage as Media).url}`]
+      images: [`${(blog.blogImage as Media).url}`],
     },
     twitter: {
       card: "summary_large_image",
@@ -58,6 +57,7 @@ export async function generateMetadata({
       images: `${(blog.blogImage as Media).url}`,
       creator: (blog.author as User).name,
     },
+    keywords: blog.keywords?.split(","),
   };
 }
 
@@ -67,9 +67,18 @@ export default async function page({ params: { slug } }: PageProps) {
   const { docs: blogs } = await payload.find({
     collection: "blogs",
     where: {
-      slug: {
-        equals: slug,
-      },
+      and: [
+        {
+          slug: {
+            equals: slug,
+          },
+        },
+        {
+          status: {
+            equals: "published",
+          },
+        },
+      ],
     },
     depth: 1,
   });
@@ -80,44 +89,51 @@ export default async function page({ params: { slug } }: PageProps) {
     notFound();
   }
 
-  const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": `${siteConfig.url}/blog/${slug}`
-  },
-  "headline": blog.title,
-  "description": blog.description,
-  "image": `${siteConfig.url}/media/${(blog.blogImage as Media).filename}`,
-  "datePublished": blog.createdAt,
-  "dateModified": blog.updatedAt,
-  "author": {
-    "@type": "Person",
-    "name": (blog.author as User).name
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": siteConfig.name,
-    "logo": {
-      "@type": "ImageObject",
-      "url": "/logo.svg"
-    }
-  },
-  //"keywords": blog.keywords?.split(","),
-  //"articleBody": "Main content of your blog post goes here." TODO: Serialize blog content
-}
+  const contents = blog.layout?.filter(
+    (block) => block.blockType === "content"
+  );
 
+  const plainText = contents
+    ?.map((content) => Plain.serialize(content))
+    .join(" ");
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteConfig.url}/blog/${slug}`,
+    },
+    headline: blog.title,
+    description: blog.description,
+    image: `${siteConfig.url}/media/${(blog.blogImage as Media).filename}`,
+    datePublished: blog.createdAt,
+    dateModified: blog.updatedAt,
+    author: {
+      "@type": "Person",
+      name: (blog.author as User).name,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      logo: {
+        "@type": "ImageObject",
+        url: "/logo.svg",
+      },
+    },
+    keywords: blog.keywords?.split(","),
+    articleBody: plainText,
+  };
 
   return (
-    
     <article className="container relative max-w-3xl mx-auto py-6 lg:py-10">
-      {/*  <script
+      {plainText}
+      <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={jsonLd}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         key="blog-jsonld"
-        />*/}        
-        <Link
+      />
+      <Link
         href="/blog"
         className={cn(
           buttonVariants({ variant: "ghost" }),
@@ -127,40 +143,37 @@ export default async function page({ params: { slug } }: PageProps) {
         <ChevronLeft className="mr-2 h-4 w-4" />
         See all blogs
       </Link>
-        
-        <div className="mb-8">
-          
-          <p
-            className="block text-sm text-muted-foreground"
-          >
-            Published on <Moment format="MMMM Do, YYYY" date={blog.createdAt}/>
-              
-          </p>
-        
-          <h1
-            className={cn("mt-2 scroll-m-20 text-4xl lg:text-5xl font-bold tracking-tight")}
-          >
-            {blog.title}
-          </h1>
-          
-            <p className="mt-4 text-sm text-muted-foreground">By: {(blog.author as User).name}</p>
-            
-            
-          
-        </div>
 
-       <Image
-          src={`${(blog.blogImage as Media).url}`}
-          alt={blog.title}
-          width={720}
-          height={405}
-          className="my-8 rounded-md border bg-muted transition-colors"
-          priority
-        />
-         
-        <RenderBlocks layout={blog.layout} />
+      <div className="mb-8">
+        <p className="block text-sm text-muted-foreground">
+          Published on <Moment format="MMMM Do, YYYY" date={blog.createdAt} />
+        </p>
 
-        <hr className="mt-12" />
+        <h1
+          className={cn(
+            "mt-2 scroll-m-20 text-4xl lg:text-5xl font-bold tracking-tight"
+          )}
+        >
+          {blog.title}
+        </h1>
+
+        <p className="mt-4 text-sm text-muted-foreground">
+          By: {(blog.author as User).name}
+        </p>
+      </div>
+
+      <Image
+        src={`${(blog.blogImage as Media).url}`}
+        alt={blog.title}
+        width={720}
+        height={405}
+        className="my-8 rounded-md border bg-muted transition-colors"
+        priority
+      />
+
+      <RenderBlocks layout={blog.layout} />
+
+      <hr className="mt-12" />
       <div className="flex justify-center py-6 lg:py-10">
         <Link href="/blog" className={cn(buttonVariants({ variant: "ghost" }))}>
           <ChevronLeft className="mr-2 h-4 w-4" />

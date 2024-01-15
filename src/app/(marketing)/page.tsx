@@ -1,5 +1,5 @@
 import DealCallOut from "@/components/callouts/DealCallOut";
-import Card from "@/components/cards/card";
+import Card from "@/components/cards/product";
 import Gutter from "@/components/shared/gutter";
 
 export default function Page() {
@@ -15,6 +15,7 @@ export default function Page() {
             <Card title="hello" />
             <Card title="hello" />
             <Card title="hello" />
+
             <Card title="hello" />
           </div>
         </div>

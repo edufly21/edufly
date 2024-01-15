@@ -3110,6 +3110,21 @@
     "@types/mime" "*"
     "@types/node" "*"
 
+"@types/slate-plain-serializer@^0.7.5":
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/@types/slate-plain-serializer/-/slate-plain-serializer-0.7.5.tgz#8b3d5960debe3495df21c25fe58e50be4bdf43ca"
+  integrity sha512-OBeo9unVBRn79l0E17X3h0NU/O/4pLP+RFvRWeoqZt4sun2TDJO4PNeUy/nTL3WmZHrPccp5EdIkj5cKaTzo1A==
+  dependencies:
+    "@types/slate" "*"
+
+"@types/slate@*":
+  version "0.47.15"
+  resolved "https://registry.yarnpkg.com/@types/slate/-/slate-0.47.15.tgz#1c350b9c932f9846dcd3a40d652f8d78f92c09f0"
+  integrity sha512-e9o9LaNpJao2LKVZ3sLJdsG12kiZ3h/z3kKR9aPWBDUXShnQP2P5KtIvj1Jl/cirqwYeCnWB1XLPxgZ/LhsdJQ==
+  dependencies:
+    "@types/react" "*"
+    immutable "^3.8.2"
+
 "@types/webidl-conversions@*":
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/@types/webidl-conversions/-/webidl-conversions-7.0.3.tgz#1306dbfa53768bcbcfc95a1c8cde367975581859"
@@ -6519,6 +6534,11 @@ immer@^9.0.6:
   version "9.0.21"
   resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.21.tgz#1e025ea31a40f24fb064f1fef23e931496330176"
   integrity sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==
+
+immutable@^3.8.2:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
+  integrity sha512-15gZoQ38eYjEjxkorfbcgBKBL6R7T459OuK+CpcWt7O3KF4uPCx2tD0uFETlUDIyo+1789crbMhTvQBSR5yBMg==
 
 immutable@^4.0.0:
   version "4.3.4"
@@ -9985,6 +10005,11 @@ slate-hyperscript@0.81.3:
   integrity sha512-A/jvoLTAgeRcJaUPQCYOikCJxSws6+/jkL7mM+QuZljNd7EA5YqafGA7sVBJRFpcoSsDRUIah1yNiC/7vxZPYg==
   dependencies:
     is-plain-object "^5.0.0"
+
+slate-plain-serializer@^0.7.13:
+  version "0.7.13"
+  resolved "https://registry.yarnpkg.com/slate-plain-serializer/-/slate-plain-serializer-0.7.13.tgz#6de8f5c645dd749f1b2e4426c20de74bfd213adf"
+  integrity sha512-TtrlaslxQBEMV0LYdf3s7VAbTxRPe1xaW10WNNGAzGA855/0RhkaHjKkQiRjHv5rvbRleVf7Nxr9fH+4uErfxQ==
 
 slate-react@0.92.0:
   version "0.92.0"

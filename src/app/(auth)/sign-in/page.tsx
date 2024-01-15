@@ -4,7 +4,7 @@ import { siteConfig } from "@/config/site";
 import type { Metadata } from "next";
 
 import SignInForm from "@/components/auth/signin-form";
-import LogoWithName from "@/components/shared/LogoWithName";
+import LogoWithName from "@/components/shared/logo-with-name";
 
 export const metadata: Metadata = {
   title: "Sign in",
