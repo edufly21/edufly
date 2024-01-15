@@ -14,9 +14,12 @@ export const Media: CollectionConfig = {
   admin: {
     hidden: ({ user }) => user.role !== "admin",
   },
-  upload: {  
+
+    upload: {
+    staticURL: "/media",
     mimeTypes: ["image/*"],
   },
+
 
   fields: [
     {
