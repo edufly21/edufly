@@ -11,7 +11,7 @@ import { siteConfig } from "@/config/site";
 import TailwindIndicator from "@/components/shared/tailwindcss-indicator";
 import { cn } from "@/lib/utils/shadcn-ui";
 import "@/styles/globals.css";
-import { inter, sansita } from "./ui/fonts";
+import { fontSans, fontSansita } from "./ui/fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -47,20 +47,13 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: siteConfig.ogImage,
     creator: "@awelrisak",
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-  manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f97316" },
+    { media: "(prefers-color-scheme: light)", color: "#ffa552" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
 };
@@ -75,8 +68,8 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background text-foreground font-sans antialiased",
-          inter.variable,
-          sansita.variable
+          fontSans.variable,
+          fontSansita.variable
         )}
       >
         <TailwindIndicator />

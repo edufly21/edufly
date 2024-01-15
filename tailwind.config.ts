@@ -12,8 +12,11 @@ module.exports = {
   prefix: "",
   theme: {
     container: {
-      center: true,
-      padding: "2rem",
+      padding: {
+        DEFAULT: '1rem',
+        md: '1.5rem',
+      },
+    
       screens: {
         "2xl": "1400px",
       },
@@ -60,7 +63,7 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        inter: ["var(--font-inter)", ...fontFamily.sans],
+        sans: ["var(--font-sans)", ...fontFamily.sans],
         sansita: ["var(--font-sansita)", ...fontFamily.sans],
       },
       backgroundImage: {

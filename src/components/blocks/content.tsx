@@ -1,6 +1,5 @@
 "use client";
 import { RichText } from "../rich-text";
-import { renderers } from "../rich-text/renderers";
 
 export default function ContentBlock({
   content,
@@ -14,5 +13,5 @@ export default function ContentBlock({
   blockName?: string | null;
   blockType: "content";
 }) {
-  return <RichText content={content} customRenderers={renderers} />;
+  return <RichText content={content} />;
 }
