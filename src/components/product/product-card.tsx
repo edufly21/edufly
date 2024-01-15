@@ -1,19 +1,15 @@
 "use client";
-import React from "react";
 import Image from "next/image";
 
-import Rating from "@mui/material/Rating";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "../ui/button";
 import { useCart } from "@/hooks/use-cart";
-import { Product } from "../../types/payload-types";
+import { Button } from "../ui/button";
 
 interface ProductProps {
   title: string;
@@ -58,13 +54,6 @@ export default function Product({
       </CardHeader>
       <CardContent className="px-1 py-1">
         <div className="flex items-center gap-1">
-          <Rating
-            name="read-only"
-            value={4.5}
-            precision={0.5}
-            readOnly
-            size="small"
-          />
           <span className="bg-muted text-xs px-2 py-1">4.5</span>
         </div>
       </CardContent>

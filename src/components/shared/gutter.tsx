@@ -7,14 +7,16 @@ interface GutterProps {
   right?: boolean;
   top?: boolean;
   bottom?: boolean;
+  all?: boolean;
 }
 
 export default function Gutter({
   className,
-  left = true,
-  right = true,
+  left,
+  right,
   top,
   bottom,
+  all,
   children,
 }: GutterProps & PropsWithChildren) {
   return (
@@ -25,6 +27,7 @@ export default function Gutter({
           "pr-4 md:pr-6 lg:pr-8": right,
           "pt-4 md:pt-6 lg:pt-8": top,
           "pb-4 md:pb-6 lg:pb-8": bottom,
+          "p-4 md:p-6 lg:p-8": all,
         },
         className
       )}

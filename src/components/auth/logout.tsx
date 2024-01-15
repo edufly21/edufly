@@ -1,8 +1,8 @@
 "use client";
-import { cn } from "@/lib/utils/shadcn-ui";
-import { Button } from "../ui/button";
-import { toast } from "sonner";
 import { logOut } from "@/lib/utils/payload/logout";
+import { cn } from "@/lib/utils/shadcn-ui";
+import { toast } from "sonner";
+import { Button } from "../ui/button";
 
 import { useRouter } from "next/navigation";
 
@@ -27,7 +27,7 @@ export default function Logout({
     }
   };
   return (
-    <Button variant="ghost" className={cn(className)}>
+    <Button variant="ghost" className={cn(className)} onClick={handleLogout}>
       {label}
     </Button>
   );

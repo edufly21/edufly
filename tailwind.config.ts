@@ -13,10 +13,12 @@ module.exports = {
   theme: {
     container: {
       padding: {
-        DEFAULT: '1rem',
-        md: '1.5rem',
+        DEFAULT: "1rem",
+        md: "1.5rem",
+        lg: "2rem",
+        xl: "3rem",
       },
-    
+
       screens: {
         "2xl": "1400px",
       },

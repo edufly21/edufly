@@ -1,12 +1,12 @@
 import DealCallOut from "@/components/callouts/DealCallOut";
-import Card from "@/components/cards/product";
+import Card from "@/components/product/product-card";
 import Gutter from "@/components/shared/gutter";
 
 export default function Page() {
   return (
     <section>
       <DealCallOut />
-      <Gutter top bottom>
+      <Gutter all>
         <div>
           <h2 className="text-xl mb-4 text-center  md:text-2xl font-bold tracking-tight ">
             Products

@@ -1,4 +1,4 @@
-import Blog from "@/components/cards/blog";
+import Blog from "@/components/blog/blog-card";
 import { getPayloadClient } from "@/get-payload";
 
 export const metadata = {
@@ -7,6 +7,7 @@ export const metadata = {
 
 export default async function BlogPage() {
   const payload = await getPayloadClient();
+
   const { docs: blogs } = await payload.find({
     collection: "blogs",
     where: {
@@ -16,6 +17,14 @@ export default async function BlogPage() {
     },
     depth: 1,
   });
+
+  if (!blogs?.length) {
+    return (
+      <p className="container mx-auto bg-muted-foreground text-2xl text-center">
+        No blogs published yet.
+      </p>
+    );
+  }
 
   return (
     <div className="container max-w-4xl py-6 lg:py-10">
@@ -31,14 +40,12 @@ export default async function BlogPage() {
         </div>
       </div>
       <hr className="my-8 bg-slate-300 dark:bg-slate-700" />
-      {blogs?.length ? (
+      {blogs?.length && (
         <div className="grid gap-10 sm:grid-cols-2">
           {blogs.map((blog, index) => (
             <Blog key={blog.id} index={index} {...blog} />
           ))}
         </div>
-      ) : (
-        <p>No blogs published.</p>
       )}
     </div>
   );
