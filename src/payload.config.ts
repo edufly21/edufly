@@ -2,6 +2,8 @@ import Icon from "./components/graphics/icon";
 import Logo from "./components/graphics/logo";
 
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3';
+import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { slateEditor } from "@payloadcms/richtext-slate";
 import { buildConfig } from "payload/config";
 import { siteConfig } from "./config/site";
