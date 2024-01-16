@@ -11,7 +11,7 @@ export default function AlertBlock({
   title,
   message,
 }: {
-  type: "default" | "info" | "success" | "warning" | "danger";
+  type: "default" | "info" | "success" | "warning" | "destructive";
   message: string;
   title?: string | null;
   id?: string | null;
