@@ -32,7 +32,7 @@ export default function Blog({ blog, index }: BlogProps) {
   return (
     <article className="group relative flex flex-col space-y-2">
       <Image
-        src={`${(blogImage as Media).url}`}
+        src={`https://laaslib.s3.eu-north-1.amazonaws.com/blog-1.jpg${(blogImage as Media).filename}`}
         alt={title}
         width={804}
         height={452}

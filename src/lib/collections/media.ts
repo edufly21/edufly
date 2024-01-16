@@ -10,13 +10,12 @@ export const Media: CollectionConfig = {
     delete: admin,
     update: admin,
   },
-
   admin: {
     hidden: ({ user }) => user.role !== "admin",
   },
 
-    upload: {
-    staticURL: "/media",
+  upload: {
+    staticURL: `https://${process.env.AWS_S3_BUCKET_NAME!}.s3.${process.env.AWS_S3_REGION!}.amazonaws.com`,
     mimeTypes: ["image/*"],
   },
   fields: [
@@ -25,7 +24,4 @@ export const Media: CollectionConfig = {
       type: "text",
     },
   ],
-    
-  
-
 };

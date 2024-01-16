@@ -1,11 +1,10 @@
 "use client";
 
-import { Blog as IBlog } from "@/types/payload-types";
 import Blog from "@/components/blog/blog-card";
 import { trpc } from "@/trpc/client";
+import { Blog as IBlog } from "@/types/payload-types";
 import Link from "next/link";
 import { type Where as Query } from "payload/types";
-import { string } from "zod";
 
 interface BlogReelProps {
   title?: string;
@@ -57,7 +56,6 @@ const BlogsReel = (props: BlogReelProps) => {
   if (isError) return <p>Error</p>;
 
   const blogs = queryResults?.pages.flatMap((page) => page.items);
-  console.log(blogs);
 
   let map: (IBlog | null)[] = [];
   if (blogs && blogs.length) {
