@@ -39,7 +39,7 @@ export default function Blog({ blog, index }: BlogProps) {
         className="rounded-md border bg-muted transition-colors"
         priority={index ? index < 2 : false}
       />
-      {`${(blogImage as Media).url}`}
+    
       <h2 className="text-2xl font-extrabold">{title}</h2>
       <p className="line-clamp-4 text-muted-foreground">{description}</p>
       <p className="text-sm text-muted-foreground">
