@@ -9,7 +9,6 @@ import { admin } from "../access/admin";
 import { anyone } from "../access/anyone";
 import Alert from "../blocks/alert";
 import Content from "../blocks/content";
-import Quote from "../blocks/quote";
 import { nanoid } from "nanoid";
 
 const addSlug: CollectionBeforeChangeHook = async ({ data, operation }) => {
@@ -162,7 +161,7 @@ export const Blogs: CollectionConfig = {
             {
               name: "layout",
               type: "blocks",
-              blocks: [Quote, Content, Alert],
+              blocks: [Content, Alert],
             },
           ],
         },
