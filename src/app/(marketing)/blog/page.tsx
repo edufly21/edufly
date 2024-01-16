@@ -18,7 +18,7 @@ export default function BlogPage() {
           </p>
         </div>
       </div>
-      <hr className="my-8 bg-slate-300 dark:bg-slate-700" />
+      <hr className="my-8 bg-slate-300 dark:bg-slate-800" />
       <BlogsReel />
     </div>
   );
