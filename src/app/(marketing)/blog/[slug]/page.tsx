@@ -5,7 +5,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { getPayloadClient } from "@/get-payload";
 import { cn } from "@/lib/utils/shadcn-ui";
-import { Media, User } from "@/types/payload-types";
+import { Media, User, Blog } from "@/types/payload-types";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +17,17 @@ interface PageProps {
     slug: string;
   };
 }
+type ContentBlock = {
+  content?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null
+    | undefined;
+  id?: string | null | undefined;
+  blockName?: string | null | undefined;
+  blockType: "content";
+};
 
 export async function generateMetadata({
   params: { slug },
@@ -89,12 +100,14 @@ export default async function page({ params: { slug } }: PageProps) {
     notFound();
   }
 
-  const contents = blog.layout?.filter(
-    (block) => block.blockType === "content"
-  );
+  const contents: ContentBlock[] = blog.layout
+    ? blog.layout.filter(
+        (block): block is ContentBlock => block.blockType === "content"
+      )
+    : [];
 
   const plainText = contents
-    ?.map((content) => Plain.serialize(content))
+    ?.map((content) => Plain.serialize(content.content))
     .join(" ");
 
   const jsonLd = {
@@ -122,7 +135,7 @@ export default async function page({ params: { slug } }: PageProps) {
       },
     },
     keywords: blog.keywords,
-    articleBody: plainText,
+    articleBody: plainText || blog.description,
   };
 
   return (

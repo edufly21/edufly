@@ -9,6 +9,7 @@
 export interface Config {
   collections: {
     users: User;
+    orders: Order;
     products: Product;
     blogs: Blog;
     media: Media;
@@ -98,6 +99,14 @@ export interface Product {
   price: number;
   paystackId?: string | null;
   image: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Order {
+  id: string;
+  _isPaid: boolean;
+  user: string | User;
+  products: (string | Product)[];
   updatedAt: string;
   createdAt: string;
 }

@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "../../config/site";
 import { Access, CollectionConfig } from "payload/types";
 
 const yourOwn: Access = ({ req: { user } }) => {

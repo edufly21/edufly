@@ -15,6 +15,7 @@ import { webpackBundler } from "@payloadcms/bundler-webpack";
 import dotenv from "dotenv";
 import path from "path";
 import { Products } from "./lib/collections/products";
+import { Orders } from "./lib/collections/orders";
 
 dotenv.config({
   path: path.resolve(__dirname, "../.env"),
@@ -34,7 +35,7 @@ const storageAdapter = s3Adapter({
 
 export default buildConfig({
   serverURL: process.env.next_PUBLIC_SERVER_URL! || "",
-  collections: [Users, Products, Blogs, Media],
+  collections: [Users, Orders, Products, Blogs, Media],
   routes: {
     admin: "/dashboard",
   },

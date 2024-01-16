@@ -15,6 +15,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "edufly-nqds.onrender.com",
       },
+      {
+        protocol: "https",
+        hostname: "laaslib.s3.eu-north-1.amazonaws.com",
+      },
     ],
   },
 };
