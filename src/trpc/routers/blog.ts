@@ -53,13 +53,10 @@ export const blogRouter = router({
         page,
       });
 
-      //TEMPORARY
-      const filteredItems = items.filter(
-        (item) => item.tags?.some((tag) => tags?.includes(tag)) || false
-      );
+   
 
       return {
-        items: tags ? filteredItems : items,
+        items: items,
         nextPage: hasNextPage ? nextPage : null,
       };
     }),
