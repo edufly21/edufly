@@ -47,7 +47,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           if (node.code) {
             text = <code key={i} className={cn(
-        "relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm"
+        "font-mono text-sm text-muted-foreground"
       )}>{text}</code>;
           }
 
