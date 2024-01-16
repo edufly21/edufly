@@ -26,8 +26,8 @@ const Alert: Block = {
           label: "Warning",
         },
         {
-          value: "danger",
-          label: "Danger",
+          value: "destructive",
+          label: "Destructive",
         },
       ],
     },
