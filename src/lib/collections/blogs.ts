@@ -81,6 +81,7 @@ export const Blogs: CollectionConfig = {
   fields: [
     {
       name: "title",
+      label: "Title",
       type: "text",
       required: true,
       admin: {
@@ -90,6 +91,7 @@ export const Blogs: CollectionConfig = {
     },
     {
       name: "description",
+      label: "Description",
       type: "textarea",
       required: true,
 
@@ -106,17 +108,20 @@ export const Blogs: CollectionConfig = {
         description:
           "Keywords help search engines understand what your blog is about. Separate keywords with a comma.",
       },
-      required: true,
+
+      hasMany: true,
     },
     {
       name: "tags",
+      label: "Tags",
       type: "text",
       admin: {
         description:
           "Tags relate your blog to other blogs on the same topic. Separate tags with a comma.",
         position: "sidebar",
       },
-      required: true,
+
+      hasMany: true,
     },
     {
       name: "status",
@@ -171,6 +176,7 @@ export const Blogs: CollectionConfig = {
       admin: {
         condition: () => false,
       },
+      index: true,
     },
     {
       name: "author",

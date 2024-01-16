@@ -9,7 +9,6 @@ import {
 } from "@/lib/validators/signin-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -20,7 +19,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-// import { trpc } from "@/trpc/client";
+import { toast } from "sonner";
+import { trpc } from "@/trpc/client";
 
 export default function SignInForm() {
   const searchParams = useSearchParams();
@@ -37,33 +37,33 @@ export default function SignInForm() {
     },
   });
 
-  // const { mutate: signIn, isLoading: isSigningin } =
-  //   trpc.auth.signIn.useMutation({
-  //     onSuccess: async () => {
-  //       toast.success("Signed in successfully");
+  const { mutate: signIn, isLoading: isSigningin } =
+    trpc.auth.signIn.useMutation({
+      onSuccess: async () => {
+        toast.success("Signed in successfully");
 
-  //       router.refresh();
+        router.refresh();
 
-  //       if (origin) {
-  //         router.push(`/${origin}`);
-  //         return;
-  //       }
+        if (origin) {
+          router.push(`/${origin}`);
+          return;
+        }
 
-  //       router.push("/");
-  //     },
-  //     onError: (err: any) => {
-  //       if (err.data?.code === "UNAUTHORIZED") {
-  //         toast.error("Invalid email or password.");
-  //       }
-  //     },
-  //   });
+        router.push("/dashboard");
+      },
+      onError: (err: any) => {
+        if (err.data?.code === "UNAUTHORIZED") {
+          toast.error("Invalid email or password.");
+        }
+      },
+    });
 
   // 2. Define a submit handler.
   function onSubmit(values: SignInFormValidation) {
-    // signIn({
-    //   email: values.email,
-    //   password: values.password,
-    // });
+    signIn({
+      email: values.email,
+      password: values.password,
+    });
   }
 
   return (
@@ -103,8 +103,8 @@ export default function SignInForm() {
           )}
         />
 
-        <Button type="submit" className="w-full" disabled={false}>
-          {form.formState.isSubmitting ? "Signing in..." : "Sign in"}
+        <Button type="submit" className="w-full" disabled={isSigningin}>
+          {isSigningin ? "Signing in..." : "Sign in"}
         </Button>
       </form>
     </Form>

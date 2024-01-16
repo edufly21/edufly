@@ -2,8 +2,8 @@ import Icon from "./components/graphics/icon";
 import Logo from "./components/graphics/logo";
 
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
-import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3';
-import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
+import { s3Adapter } from "@payloadcms/plugin-cloud-storage/s3";
+import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import { buildConfig } from "payload/config";
 import { siteConfig } from "./config/site";
@@ -21,15 +21,16 @@ dotenv.config({
 });
 
 const storageAdapter = s3Adapter({
-   config: {
-     endpoint: process.env.AWS_S3_API_ENDPOINT!,
-     credentials: {
-       accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID!,
-       secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY!,
-     },
-   },
-   bucket: process.env.AWS_S3_BUCKET_NAME!,
- });
+  config: {
+    endpoint: process.env.AWS_S3_API_ENDPOINT!,
+    region: process.env.AWS_S3_REGION!,
+    credentials: {
+      accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID!,
+      secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY!,
+    },
+  },
+  bucket: process.env.AWS_S3_BUCKET_NAME!,
+});
 
 export default buildConfig({
   serverURL: process.env.next_PUBLIC_SERVER_URL! || "",
@@ -44,8 +45,8 @@ export default buildConfig({
 
     meta: {
       titleSuffix: ` - ${siteConfig.name}`,
-      favicon: `${siteConfig.url}/favicon.ico`,
-      ogImage: `${siteConfig.url}/og-image.svg`,
+      favicon: "/favicon.ico",
+      ogImage: "/og-image.svg",
     },
     components: {
       // beforeLogin: [BeforeLogin],
@@ -63,15 +64,15 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(__dirname, "./types/payload-types.ts"),
   },
-   plugins: [
-     cloudStorage({
-       collections: {
-         media: {
-           adapter: storageAdapter, // see docs for the adapter you want to use
-         },
-       },
-     }),
-   ],
+  plugins: [
+    cloudStorage({
+      collections: {
+        media: {
+          adapter: storageAdapter,
+        },
+      },
+    }),
+  ],
   upload: {
     limits: {
       fileSize: 5000000, // 5MB

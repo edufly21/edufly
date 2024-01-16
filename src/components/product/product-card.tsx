@@ -31,7 +31,7 @@ export default function Product({
   const { addItem } = useCart();
   return (
     <Card className="max-w-[176px] flex flex-col gap-1">
-      <div className="h-44 w-44 relative rounded-md">
+      <div className="h-36 w-36 relative rounded-md">
         <Image
           src={`https://source.unsplash.com/random/256x256r=${Math.random()}`}
           alt="image"
@@ -42,7 +42,7 @@ export default function Product({
       </div>
 
       <CardHeader className="px-1 py-0">
-        <CardTitle className="text-lg leading-none line-clamp-2">
+        <CardTitle className="leading-none line-clamp-3 font-meium tracking-tight">
           Create project Lorem ipsum dolor sit amet consectetur, adipisicing
           elit. Dolore!
         </CardTitle>

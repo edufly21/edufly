@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 
 import NextTopLoader from "nextjs-toploader";
 
-// import { Providers as TRPCProviders } from "../contexts/trpc-providers";
+import { Providers as TRPCProviders } from "../contexts/trpc-providers";
 import { Toaster } from "@/components/ui/sonner";
 
 import { ThemeProvider } from "@/contexts/theme-provider";
@@ -80,7 +80,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <TRPCProviders>{children}</TRPCProviders>
           </ThemeProvider>
           <NextTopLoader
             color="#f97316"

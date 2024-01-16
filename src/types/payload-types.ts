@@ -40,8 +40,8 @@ export interface Blog {
   id: string;
   title: string;
   description: string;
-  keywords: string;
-  tags: string;
+  keywords?: string[] | null;
+  tags?: string[] | null;
   status: 'draft' | 'published';
   blogImage: string | Media;
   layout?:

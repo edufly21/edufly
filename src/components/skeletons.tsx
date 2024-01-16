@@ -11,13 +11,12 @@ export default function Skeletons({ repeat = 1, className }: SkeletonProps) {
   return (
     <div className={cn("flex flex-wrap gap-4", className)}>
       {[...Array(repeat)].map((_, index) => (
-        <ProductPlaceholder key={index} />
+        <CardPlaceholder key={index} />
       ))}
     </div>
   );
 }
-
-const ProductPlaceholder = () => {
+export const CardPlaceholder = () => {
   return (
     <div className="flex flex-col w-full">
       <div className="relative bg-zinc-100 aspect-square w-full overflow-hidden rounded-xl">

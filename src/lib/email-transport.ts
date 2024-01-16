@@ -1,4 +1,4 @@
-import { siteConfig } from "../config/site";
+
 import nodemailer from "nodemailer";
 
 const transport = nodemailer.createTransport({
@@ -13,7 +13,7 @@ const transport = nodemailer.createTransport({
 
 const email = {
   transport,
-  fromName: siteConfig.name!,
+  fromName: "Edufly",
   fromAddress: process.env.FROM_EMAIL!,
 };
 
