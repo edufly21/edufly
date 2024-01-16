@@ -10,6 +10,7 @@ const Content: Block = {
       editor: slateEditor({
         admin: {
           elements: [
+            "indent",
             "h2",
             "h3",
             "h4",
@@ -18,11 +19,9 @@ const Content: Block = {
             "textAlign",
             "ul",
             "ol",
-            "blockquote",
-            "indent",
+            "blockquote",            
             "link",
             "upload",
-            "relationship",
           ],
         },
       }),
