@@ -106,9 +106,9 @@ export default async function page({ params: { slug } }: PageProps) {
       )
     : [];
 
-  const plainText = contents
-    ?.map((content) => Plain.serialize(content.content))
-    .join(" ");
+ // const plainText = contents
+   // ?.map((content) => Plain.serialize(content.content))
+    //.join(" ");
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -135,12 +135,12 @@ export default async function page({ params: { slug } }: PageProps) {
       },
     },
     keywords: blog.keywords,
-    articleBody: plainText || blog.description,
+    //articleBody: plainText || blog.description,
   };
 
   return (
     <article className="container relative max-w-3xl mx-auto py-6 lg:py-10">
-      {plainText}
+      
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
