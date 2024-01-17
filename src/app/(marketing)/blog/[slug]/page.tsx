@@ -5,12 +5,11 @@ import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { getPayloadClient } from "@/get-payload";
 import { cn } from "@/lib/utils/shadcn-ui";
-import { Media, User, Blog } from "@/types/payload-types";
+import { Media, User } from "@/types/payload-types";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Plain from "slate-plain-serializer";
 
 interface PageProps {
   params: {
@@ -68,7 +67,7 @@ export async function generateMetadata({
       images: `${(blog.blogImage as Media).url}`,
       creator: (blog.author as User).name,
     },
-    keywords: blog.keywords,
+    keywords: blog.keywords.split(", ")
   };
 }
 
@@ -134,7 +133,7 @@ export default async function page({ params: { slug } }: PageProps) {
         url: "/logo.svg",
       },
     },
-    keywords: blog.keywords,
+    keywords: blog.keywords.split(", "),
     //articleBody: plainText || blog.description,
   };
 

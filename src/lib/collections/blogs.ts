@@ -10,7 +10,6 @@ import { anyone } from "../access/anyone";
 import Alert from "../blocks/alert";
 import Content from "../blocks/content";
 import { nanoid } from "nanoid";
-import { slateEditor } from "@payloadcms/richtext-slate";
 import { BLOG_CATEGORIES } from "../constants";
 
 const addSlug: CollectionBeforeChangeHook = async ({ data, operation }) => {
@@ -95,7 +94,6 @@ export const Blogs: CollectionConfig = {
       label: "Description",
       type: "textarea",
       required: true,
-
       admin: {
         description:
           "Description should be short, descriptive, and not too long: just around 40-160 characters.",
@@ -109,17 +107,20 @@ export const Blogs: CollectionConfig = {
         description:
           "Keywords help search engines understand what your blog is about. Separate keywords with a comma.",
       },
+
+      required: true,
     },
     {
-      name: "catogory",
-      label: "Catogory",
+      name: "category",
+      label: "Category",
       type: "select",
       admin: {
-        description: "CatogorY",
+        description:
+          "Tags relate your blog to other blogs on the same topic. Separate tags with a comma.",
         position: "sidebar",
       },
-
       options: BLOG_CATEGORIES,
+      required: true,
     },
     {
       name: "status",
@@ -155,29 +156,12 @@ export const Blogs: CollectionConfig = {
           ],
         },
         {
-          label: "Blog Content",
+          label: "Blog Layout",
           fields: [
             {
-              name: "content",
-              type: "richText",
-              editor: slateEditor({
-                admin: {
-                  elements: [
-                    "indent",
-                    "h2",
-                    "h3",
-                    "h4",
-                    "h5",
-                    "h6",
-                    "textAlign",
-                    "ul",
-                    "ol",
-                    "blockquote",
-                    "link",
-                    "upload",
-                  ],
-                },
-              }),
+              name: "layout",
+              type: "blocks",
+              blocks: [Content, Alert],
             },
           ],
         },

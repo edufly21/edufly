@@ -41,8 +41,38 @@ export interface Blog {
   id: string;
   title: string;
   description: string;
-  keywords?: string[] | null;
-  tags?: string[] | null;
+  keywords: string;
+  category:
+    | 'general'
+    | 'fashion'
+    | 'beauty'
+    | 'travel'
+    | 'lifestyle'
+    | 'personal'
+    | 'tech'
+    | 'health'
+    | 'fitness'
+    | 'wellness'
+    | 'saas'
+    | 'business'
+    | 'education'
+    | 'food_and_recipe'
+    | 'love_and_relationships'
+    | 'alternative_topics'
+    | 'green_living'
+    | 'music'
+    | 'automotive'
+    | 'marketing'
+    | 'internet_services'
+    | 'finance'
+    | 'sports'
+    | 'entertainment'
+    | 'productivity'
+    | 'hobbies'
+    | 'parenting'
+    | 'pets'
+    | 'photography'
+    | 'agriculture';
   status: 'draft' | 'published';
   blogImage: string | Media;
   layout?:
