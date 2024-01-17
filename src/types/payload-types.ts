@@ -48,13 +48,6 @@ export interface Blog {
   layout?:
     | (
         | {
-            quote: string;
-            author?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'quote';
-          }
-        | {
             content?:
               | {
                   [k: string]: unknown;
@@ -65,7 +58,7 @@ export interface Blog {
             blockType: 'content';
           }
         | {
-            type: 'default' | 'info' | 'success' | 'warning' | 'danger';
+            type: 'default' | 'info' | 'success' | 'warning' | 'destructive';
             message: string;
             title?: string | null;
             id?: string | null;

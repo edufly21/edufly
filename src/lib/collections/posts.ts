@@ -1,4 +1,6 @@
 import { Blog } from "@/types/payload-types";
+import { slateEditor } from "@payloadcms/richtext-slate";
+import { nanoid } from "nanoid";
 import {
   CollectionAfterChangeHook,
   CollectionBeforeChangeHook,
@@ -7,13 +9,11 @@ import {
 import slugify from "slugify";
 import { admin } from "../access/admin";
 import { anyone } from "../access/anyone";
-import Alert from "../blocks/alert";
-import Content from "../blocks/content";
-import { nanoid } from "nanoid";
-import { slateEditor } from "@payloadcms/richtext-slate";
 import { BLOG_CATEGORIES } from "../constants";
 
 const addSlug: CollectionBeforeChangeHook = async ({ data, operation }) => {
+  if (operation === "update") return data;
+
   const blog = data as Blog;
   const slug = slugify(blog.title, {
     remove: /[*+~.()'"!:@]/g,
@@ -63,63 +63,72 @@ const syncUser: CollectionAfterChangeHook<Blog> = async ({ req, doc }) => {
   }
 };
 
-export const Blogs: CollectionConfig = {
-  slug: "blogs",
+const Posts: CollectionConfig = {
+  slug: "posts",
   admin: {
+    defaultColumns: ["title", "author", "category", "tags", "status"],
     useAsTitle: "title",
-    defaultColumns: ["title", "slug", "createdAt"],
+  },
+  access: {
+    read: () => true,
   },
   hooks: {
     beforeChange: [addSlug, addAuthor],
     afterChange: [syncUser],
   },
-  access: {
-    read: anyone,
-    create: admin,
-    update: admin,
-    delete: admin,
-  },
   fields: [
     {
       name: "title",
-      label: "Title",
       type: "text",
       required: true,
-      admin: {
-        description:
-          "Title should be catchy, descriptive, and not too long: just around 20-100 characters.",
-      },
     },
     {
       name: "description",
       label: "Description",
       type: "textarea",
       required: true,
-
-      admin: {
-        description:
-          "Description should be short, descriptive, and not too long: just around 40-160 characters.",
-      },
     },
-    {
-      name: "keywords",
-      label: "Keywords",
-      type: "text",
-      admin: {
-        description:
-          "Keywords help search engines understand what your blog is about. Separate keywords with a comma.",
-      },
-    },
-    {
-      name: "catogory",
-      label: "Catogory",
-      type: "select",
-      admin: {
-        description: "CatogorY",
-        position: "sidebar",
-      },
 
-      options: BLOG_CATEGORIES,
+    {
+      type: "tabs",
+      tabs: [
+        {
+          label: "Post Media",
+          fields: [
+            {
+              name: "image",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+          ],
+        },
+        {
+          label: "Post Content",
+          fields: [
+            {
+              name: "content",
+              type: "richText",
+              editor: slateEditor({
+                admin: {
+                  elements: [
+                    "indent",
+                    "h2",
+                    "h3",
+                    "h4",
+                    "h5",
+                    "h6",
+                    "blockquote",
+                    "ul",
+                    "ol",
+                    "link",
+                  ],
+                },
+              }),
+            },
+          ],
+        },
+      ],
     },
     {
       name: "status",
@@ -134,75 +143,34 @@ export const Blogs: CollectionConfig = {
           label: "Published",
         },
       ],
-      defaultValue: "published",
+      defaultValue: "draft",
       admin: {
         position: "sidebar",
       },
-      required: true,
     },
     {
-      type: "tabs",
-      tabs: [
-        {
-          label: "Blog Media",
-          fields: [
-            {
-              name: "blogImage",
-              type: "upload",
-              relationTo: "media",
-              required: true,
-            },
-          ],
-        },
-        {
-          label: "Blog Content",
-          fields: [
-            {
-              name: "content",
-              type: "richText",
-              editor: slateEditor({
-                admin: {
-                  elements: [
-                    "indent",
-                    "h2",
-                    "h3",
-                    "h4",
-                    "h5",
-                    "h6",
-                    "textAlign",
-                    "ul",
-                    "ol",
-                    "blockquote",
-                    "link",
-                    "upload",
-                  ],
-                },
-              }),
-            },
-          ],
-        },
-      ],
-    },
-
-    {
-      name: "slug",
-      type: "text",
-      required: true,
+      name: "publishedDate",
+      type: "date",
       admin: {
-        condition: () => false,
+        position: "sidebar",
       },
-      index: true,
     },
     {
       name: "author",
       type: "relationship",
       relationTo: "users",
-      required: true,
-      hasMany: false,
       admin: {
         condition: () => false,
       },
     },
-    // {
+   
+    {
+      name: "category",
+      type: "select",
+      options: BLOG_CATEGORIES,
+      required: true,
+      defaultValue: "general",
+    },
   ],
 };
+export default Posts;
