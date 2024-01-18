@@ -54,6 +54,14 @@ export const blogRouter = router({
           ...query,
         };
       }
+      if (currentBlogId) {
+        parsedQueries = {
+          ...parsedQueries,
+          id: {
+            notEquals: currentBlogId,
+          },
+        };
+      }
 
       const {
         docs: items,
@@ -65,10 +73,6 @@ export const blogRouter = router({
           status: {
             equals: "published",
           },
-          id: {
-            not_equals: currentBlogId,
-          },
-
           ...parsedQueries,
         },
         sort: sort || "-createdAt",
