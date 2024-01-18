@@ -12,7 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { serialize } from "@/lib/utils"
-
+import readingTime from "reading-time"
 interface PageProps {
   params: {
     slug: string;
