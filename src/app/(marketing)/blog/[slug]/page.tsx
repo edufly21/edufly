@@ -11,6 +11,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { serialize } from "@/lib/utils}
+
 interface PageProps {
   params: {
     slug: string;
@@ -98,17 +100,17 @@ export default async function page({ params: { slug } }: PageProps) {
   if (!blog) {
     notFound();
   }
-  // const contentBlocks = blog.layout?.filter(
-  //   (block) => block.blockType === "content"
-  // ) as ContentBlock[];
+   const contentBlocks = blog.layout?.filter(
+    (block) => block.blockType === "content"
+   ) as ContentBlock[];
 
-  // const contents = contentBlocks
-  //   .map((block) => block.content)
-  //   .flat()
-  //   .filter((content) => content !== null && content !== undefined) as {
-  //   [k: string]: unknown;
-  // }[];
-  // const plainText = serialize(contents);
+   const contents = contentBlocks
+     .map((block) => block.content)
+     .flat()
+     .filter((content) => content !== null && content !== undefined) as {
+     [k: string]: unknown;
+   }[];
+   const plainText = serialize(contents);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -134,7 +136,7 @@ export default async function page({ params: { slug } }: PageProps) {
       },
     },
      keywords: blog.keywords.split(", "),
-    //articleBody: plainText || blog.description,
+    articleBody: plainText || blog.description,
   };
 
   return (
@@ -162,7 +164,7 @@ export default async function page({ params: { slug } }: PageProps) {
             <p className="block text-sm text-muted-foreground">
               Published on{" "}
               <Moment format="MMMM Do, YYYY" date={blog.createdAt} />{" "}
-              {/* &#x2022; {readingTime(plainText).text} */}
+              &#x2022; {readingTime(plainText).text} 
             </p>
 
             <h1
