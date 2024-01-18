@@ -38,13 +38,20 @@ export const blogRouter = router({
 
       const payload = await getPayloadClient();
 
-      const parsedQueries = {
-        ...(query || {}),
-      };
+      let parsedQueries = {};
 
       if (category) {
-        parsedQueries.category = {
-          equals: category,
+        parsedQueries = {
+          ...parsedQueries,
+          category: {
+            equals: category,
+          },
+        };
+      }
+      if (query) {
+        parsedQueries = {
+          ...parsedQueries,
+          ...query,
         };
       }
 
@@ -61,10 +68,11 @@ export const blogRouter = router({
           id: {
             not_equals: currentBlogId,
           },
+
           ...parsedQueries,
         },
         sort: sort || "-createdAt",
-        limit,
+        limit: limit || 15,
         page,
       });
 

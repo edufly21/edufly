@@ -32,7 +32,7 @@ export default function Product({
   const { addItem } = useCart();
   return (
     <Card className="max-w-[176px] flex flex-col gap-1 border-none">
-      <div className="h-36 w-36 relative rounded-md">
+      <div className="h-36 w-full relative rounded-md">
         <Image
           src={`https://source.unsplash.com/random/256x256r=${Math.random()}`}
           alt="image"

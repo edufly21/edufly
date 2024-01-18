@@ -34,7 +34,7 @@ export default function Search({
   };
 
   return (
-    <search className={cn("px-4 md:px-6 py-2.5 md:py-3.5", className)}>
+    <search className={cn("px-4 md:px-6 my-2.5 md:my-3.5", className)}>
       <form onSubmit={handleSubmit}>
         <label
           htmlFor="search"

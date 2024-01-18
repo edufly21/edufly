@@ -82,8 +82,8 @@ export function Menu() {
         <MenuContent
           items={[
             { title: "Home", href: "/" },
-            { title: "Products", href: "/about" },
-            { title: "Blog", href: "/contact" },
+            { title: "Products", href: "/products" },
+            { title: "Blog", href: "/blog" },
           ]}
           handleClose={() => setShowMobileMenu(false)}
         ></MenuContent>

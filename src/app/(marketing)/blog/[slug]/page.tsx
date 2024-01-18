@@ -1,5 +1,4 @@
 import RenderBlocks from "@/components/blocks/render-blocks.";
-import BlogsReel from "@/components/blog/blog-reel";
 import { ChevronLeft } from "@/components/icons";
 import Moment from "@/components/shared/moment";
 import { buttonVariants } from "@/components/ui/button";
@@ -197,9 +196,14 @@ export default async function page({ params: { slug } }: PageProps) {
             </Link>
           </div>
         </article>
-        <div className="">
-          <BlogsReel title="Related Blogs" link={{href: "/blog", text: "See more"}} />
-        </div>
+        {/* <div className="">
+          <BlogsReel
+            title="Related Blogs"
+            link={{ href: "/blog", text: "See more" }}
+            category={blog.category}
+            currentBlogId={blog.id}
+          />
+        </div> */}
       </section>
     </>
   );
