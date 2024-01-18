@@ -5,7 +5,7 @@ import { trpc } from "@/trpc/client";
 import { Blog as IBlog } from "@/types/payload-types";
 import Link from "next/link";
 import { type Where as Query } from "payload/types";
-
+import {buttonVariants} from "@/components/ui/button"
 interface BlogReelProps {
   title?: string;
   subtitle?: string;
@@ -73,7 +73,7 @@ const BlogsReel = (props: BlogReelProps) => {
       <div className="md:flex md:items-center md:justify-between mb-4">
         <div className="max-w-2xl px-4 lg:max-w-4xl lg:px-0">
           {title && (
-            <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+            <h1 className="text-2xl font-bold sm:text-3xl">
               {title}
             </h1>
           )}
@@ -85,7 +85,7 @@ const BlogsReel = (props: BlogReelProps) => {
         {link ? (
           <Link
             href={link.href}
-            className="hidden text-sm font-medium text-blue-600 hover:text-blue-500 md:block"
+            className={buttonVariants({variant: "ghost"})}
           >
             {link.text} <span aria-hidden="true">&rarr;</span>
           </Link>
