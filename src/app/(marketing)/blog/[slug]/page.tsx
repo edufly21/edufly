@@ -199,7 +199,7 @@ export default async function page({ params: { slug } }: PageProps) {
             </Link>
           </div>
         </article>
-         <div className="">
+         <div className="px-6">
           <BlogsReel
             title="Related Blogs"
             link={{ href: "/blog", text: "See more" }}
