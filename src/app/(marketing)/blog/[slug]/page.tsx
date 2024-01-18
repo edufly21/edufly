@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { serialize } from "@/lib/utils}
+import { serialize } from "@/lib/utils"
 
 interface PageProps {
   params: {
