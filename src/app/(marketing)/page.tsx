@@ -8,7 +8,7 @@ export default function Page() {
     <section>
       <Search />
       <DealCallOut />
-      <Gutter all>
+      <Gutter all className="pb-6 md:pb-8 lg:pb-10">
         <div>
           <h2 className="text-xl mb-4 text-center  md:text-2xl font-bold tracking-tight ">
             Products

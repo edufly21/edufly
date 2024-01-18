@@ -8,6 +8,7 @@ import MobileNav from "./mobile-nav";
 import Link from "next/link";
 import { User, List, Image as ImageIcon } from "../icons";
 import Cart from "./cart";
+import MainNav from "./main-nav";
 
 export default function Header() {
   return (
@@ -20,21 +21,7 @@ export default function Header() {
           <LogoWithName name={siteConfig.name} href="/" />
         </div>
 
-        <div className="hidden md:flex gap-5">
-          <Link href="/account" className="flex items-center gap-2">
-            <User />
-            <p>Sign in</p>
-          </Link>
-          <Link href="/account" className="flex items-center gap-2">
-            <List />
-            <p>Projects</p>
-          </Link>
-          <Link href="/account" className="flex items-center gap-2">
-            <ImageIcon />
-            <p>Photos</p>
-          </Link>
-          <Cart />
-        </div>
+        <MainNav />
 
         <MobileNav />
       </div>

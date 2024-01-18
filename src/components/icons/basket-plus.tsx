@@ -8,6 +8,7 @@ const BasketPlus: CustomIcon = ({ ...props }) => (
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     fill="currentColor"
+    className="h-6 w-6"
     {...props}
   >
     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

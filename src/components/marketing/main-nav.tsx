@@ -35,8 +35,8 @@ export default async function mainNav() {
         </DropdownMenu>
       )}
       {!user && (
-        <Link href="signin" className="flex gap-2">
-          <User className="h-6 w-6" />
+        <Link href="/sign-in" className="flex gap-2">
+          <User className="h-6 w-6 sr-only" />
           <p>Sign in</p>
         </Link>
       )}

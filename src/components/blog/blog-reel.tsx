@@ -64,6 +64,10 @@ const BlogsReel = (props: BlogReelProps) => {
     map = new Array<null>(limit).fill(null);
   }
 
+  if (!map.length) {
+    return null;
+  }
+
   return (
     <section>
       <div className="md:flex md:items-center md:justify-between mb-4">
@@ -72,10 +76,10 @@ const BlogsReel = (props: BlogReelProps) => {
             <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
               {title}
             </h1>
-          ) }
+          )}
           {subtitle && (
             <p className="mt-2 text-sm text-muted-foreground">{subtitle}</p>
-          ) }
+          )}
         </div>
 
         {link ? (

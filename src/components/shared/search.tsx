@@ -4,12 +4,17 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Search as SearchIcon } from "../icons";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { cn } from "@/lib/utils/shadcn-ui";
 
 interface SearchProps {
   placeholder?: string;
+  className?: string;
 }
 
-export default function Search({ placeholder = "Search" }: SearchProps) {
+export default function Search({
+  placeholder = "Search",
+  className,
+}: SearchProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -29,7 +34,7 @@ export default function Search({ placeholder = "Search" }: SearchProps) {
   };
 
   return (
-    <search>
+    <search className={cn("px-4 md:px-6 py-2.5 md:py-3.5", className)}>
       <form onSubmit={handleSubmit}>
         <label
           htmlFor="search"
