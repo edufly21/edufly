@@ -66,7 +66,7 @@ export async function generateMetadata({
       images: `${(blog.blogImage as Media).url}`,
       creator: (blog.author as User).name,
     },
-    // keywords: blog.keywords.split(", "),
+    keywords: blog.keywords.split(", "),
   };
 }
 
@@ -132,7 +132,7 @@ export default async function page({ params: { slug } }: PageProps) {
         url: "/logo.svg",
       },
     },
-    // keywords: blog.keywords.split(", "),
+     keywords: blog.keywords.split(", "),
     //articleBody: plainText || blog.description,
   };
 
@@ -196,14 +196,14 @@ export default async function page({ params: { slug } }: PageProps) {
             </Link>
           </div>
         </article>
-        {/* <div className="">
+         <div className="">
           <BlogsReel
             title="Related Blogs"
             link={{ href: "/blog", text: "See more" }}
             category={blog.category}
             currentBlogId={blog.id}
           />
-        </div> */}
+        </div> 
       </section>
     </>
   );
