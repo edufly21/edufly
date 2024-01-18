@@ -1,4 +1,4 @@
-import RenderBlocks from "@/components/blocks/render-blocks";
+import RenderBlocks from "@/components/blocks/render-blocks.";
 import BlogsReel from "@/components/blog/blogs-reel";
 import { ChevronLeft } from "@/components/icons";
 import Moment from "@/components/shared/moment";
