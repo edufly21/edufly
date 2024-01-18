@@ -1,3 +1,4 @@
+import { Node } from 'slate'
 export function formatPrice(
   price: number | string,
   options: {
@@ -15,4 +16,8 @@ export function formatPrice(
     notation,
     maximumFractionDigits: 2,
   }).format(numericPrice);
+}
+
+export const serialize = (nodes: any) => {
+  return nodes.map((n: any)=> Node.string(n)).join('\n')
 }
