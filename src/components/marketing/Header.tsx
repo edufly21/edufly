@@ -15,9 +15,9 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-background px-4 md:px-6 py-2.5 md:py-3.5">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-1">
-          <div>
+       
             <Menu />
-          </div>
+       
           <LogoWithName name={siteConfig.name} href="/" />
         </div>
 

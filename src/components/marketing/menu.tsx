@@ -7,10 +7,11 @@ import { usePreventScroll } from "@/hooks/use-prevent-scroll";
 import { Button } from "../ui/button";
 import { Close, Menu as MenuIcon } from "../icons";
 import { ModeToggle } from "../shared/mode-toggle";
+import { MainNavItem } from "@/types";
 // import { MainNavItem } from "@/types";
 
 interface MobileNavProps {
-  items: any[]; // MainNavItem[];
+  items: MainNavItem[];
   children?: React.ReactNode;
   handleClose?: () => void;
 }
@@ -79,7 +80,11 @@ export function Menu() {
       </Button>
       {showMobileMenu && (
         <MenuContent
-          items={[]}
+          items={[
+            { title: "Home", href: "/" },
+            { title: "Products", href: "/about" },
+            { title: "Blog", href: "/contact" },
+          ]}
           handleClose={() => setShowMobileMenu(false)}
         ></MenuContent>
       )}

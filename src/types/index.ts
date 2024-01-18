@@ -36,6 +36,7 @@ export interface SiteConfig {
   links?: Link[];
   address?: Address;
   contact?: Contact;
+  
 }
 
 export type NavItem = {
