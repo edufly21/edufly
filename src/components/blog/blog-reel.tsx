@@ -94,7 +94,7 @@ const BlogsReel = (props: BlogReelProps) => {
 
       <div className="relative">
         <div className="mt-6 flex items-center w-full">
-          <div className="w-full grid  gap-x-4 gap-y-10 sm:grid-cols-2 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4 md:gap-y-10 lg:gap-x-8">
+          <div className="w-full flex gap-x-4 gap-y-10 sm:gap-x-6 md:gap-y-10 lg:gap-x-8">
             {map.map((blog, i) => (
               <Card key={`Blog-${i}`} blog={blog} index={i} />
             ))}
