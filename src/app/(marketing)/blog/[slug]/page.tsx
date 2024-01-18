@@ -1,5 +1,5 @@
 import RenderBlocks from "@/components/blocks/render-blocks.";
-import BlogsReel from "@/components/blog/blogs-reel";
+import BlogsReel from "@/components/blog/blog-reel";
 import { ChevronLeft } from "@/components/icons";
 import Moment from "@/components/shared/moment";
 import { buttonVariants } from "@/components/ui/button";
