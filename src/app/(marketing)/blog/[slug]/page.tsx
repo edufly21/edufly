@@ -159,7 +159,7 @@ export default async function page({ params: { slug } }: PageProps) {
             See all blogs
           </Link>
         </div>
-        <article className="container relative max-w-3xl mx-auto py-6 lg:py-10">
+        <article className="flex-1container relative max-w-3xl mx-auto py-6 lg:py-10">
           <div className="mb-8">
             <p className="block text-sm text-muted-foreground">
               Published on{" "}
