@@ -1,14 +1,45 @@
-import React from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { getCurrentUser } from "@/lib/utils/payload/get-current-user";
+import { BookImage, GanttChartSquare, User } from "lucide-react";
+import { cookies } from "next/headers";
 import Link from "next/link";
-import { BookImage, GanttChartSquare, ShoppingCart, User } from "lucide-react";
+import Logout from "../auth/logout";
+import { Button } from "../ui/button";
+import Cart from "./cart";
+export default async function mainNav() {
+  const { user } = await getCurrentUser(cookies());
 
-export default function mainNav() {
   return (
     <div className="hidden md:flex gap-7">
-      <Link href="signin" className="flex gap-2">
-        <User className="h-6 w-6" />
-        <p>Sign in</p>
-      </Link>
+      {user && (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="icon">
+              <User className="h-5 w-5" />
+              <span className="sr-only"> User </span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard">Dashboard</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Logout />
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )}
+      {!user && (
+        <Link href="signin" className="flex gap-2">
+          <User className="h-6 w-6" />
+          <p>Sign in</p>
+        </Link>
+      )}
       <Link href="/projects" className="flex gap-2">
         <GanttChartSquare className="h-6 w-6" />
         <p>Projects</p>
@@ -17,10 +48,7 @@ export default function mainNav() {
         <BookImage className="h-6 w-6" />
         <p>Pictures</p>
       </Link>
-      <Link href="/cart" className="flex gap-2">
-        <ShoppingCart className="h-6 w-6" />
-        <p>Cart</p>
-      </Link>
+      <Cart />
     </div>
   );
 }

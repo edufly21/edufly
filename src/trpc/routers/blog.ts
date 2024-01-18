@@ -15,8 +15,8 @@ export const blogRouter = router({
             return val;
           })
           .optional(),
-        tags: z
-          .custom<Blog["tags"]>((val) => {
+        category: z
+          .custom<Blog["category"]>((val) => {
             return val;
           })
           .optional(),
@@ -24,13 +24,29 @@ export const blogRouter = router({
         currentBlogId: z.string().optional(),
       })
     )
-
     .query(async ({ input }) => {
-      const { query, cursor, limit = 15, sort, currentBlogId, tags } = input;
+      const {
+        query,
+        cursor,
+        limit = 15,
+        sort,
+        currentBlogId,
+        category,
+      } = input;
 
       const page = cursor || 1;
 
       const payload = await getPayloadClient();
+
+      const parsedQueries = {
+        ...(query || {}),
+      };
+
+      if (category) {
+        parsedQueries.category = {
+          equals: category,
+        };
+      }
 
       const {
         docs: items,
@@ -45,15 +61,12 @@ export const blogRouter = router({
           id: {
             not_equals: currentBlogId,
           },
-          //TODO: WHERE ANY OF TAGS ARE IN TAGS
-          ...query,
+          ...parsedQueries,
         },
         sort: sort || "-createdAt",
         limit,
         page,
       });
-
-   
 
       return {
         items: items,

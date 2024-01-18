@@ -16,6 +16,7 @@ export default function Skeletons({ repeat = 1, className }: SkeletonProps) {
     </div>
   );
 }
+
 export const CardPlaceholder = () => {
   return (
     <div className="flex flex-col w-full">

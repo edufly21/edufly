@@ -1,6 +1,6 @@
 import {
   User,
-  Gift,
+
   ShoppingCart,
   Search,
   Menu,
@@ -12,11 +12,14 @@ import {
   Sun,
   ClipboardList,
   Image,
-  Info,
-  // Warning,
+
+ type LucideProps
 } from "lucide-react";
 
+import BasketPlus from "./basket-plus";
+
 export type Icon = LucideIcon;
+export type CustomIcon = React.FC<LucideProps>;
 export {
   User,
   ShoppingCart,
@@ -29,5 +32,5 @@ export {
   Sun,
   ClipboardList as List,
   Image,
-  Gift as Logo,
+  BasketPlus,
 };

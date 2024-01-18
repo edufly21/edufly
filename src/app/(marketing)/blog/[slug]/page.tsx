@@ -10,7 +10,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
 interface PageProps {
   params: {
     slug: string;
@@ -67,7 +66,7 @@ export async function generateMetadata({
       images: `${(blog.blogImage as Media).url}`,
       creator: (blog.author as User).name,
     },
-    keywords: blog.keywords.split(", ")
+    keywords: blog.keywords.split(", "),
   };
 }
 
@@ -98,17 +97,17 @@ export default async function page({ params: { slug } }: PageProps) {
   if (!blog) {
     notFound();
   }
+  // const contentBlocks = blog.layout?.filter(
+  //   (block) => block.blockType === "content"
+  // ) as ContentBlock[];
 
-  const contents: ContentBlock[] = blog.layout
-    ? blog.layout.filter(
-        (block): block is ContentBlock => block.blockType === "content"
-      )
-    : [];
-
- // const plainText = contents
-   // ?.map((content) => Plain.serialize(content.content))
-    //.join(" ");
-
+  // const contents = contentBlocks
+  //   .map((block) => block.content)
+  //   .flat()
+  //   .filter((content) => content !== null && content !== undefined) as {
+  //   [k: string]: unknown;
+  // }[];
+  // const plainText = serialize(contents);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -138,60 +137,67 @@ export default async function page({ params: { slug } }: PageProps) {
   };
 
   return (
-    <article className="container relative max-w-3xl mx-auto py-6 lg:py-10">
-      
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         key="blog-jsonld"
       />
-      <Link
-        href="/blog"
-        className={cn(
-          buttonVariants({ variant: "ghost" }),
-          "absolute left-[-200px] top-14 hidden xl:inline-flex"
-        )}
-      >
-        <ChevronLeft className="mr-2 h-4 w-4" />
-        See all blogs
-      </Link>
+      <section className="flex flex-col md:flex-row gap-4 md:gap-6">
+        <div className="flex flex-col">
+          <Link
+            href="/blog"
+            className={cn(
+              buttonVariants({ variant: "ghost" }),
+              "hidden xl:inline-flex gap-2 items-cente self-end"
+            )}
+          >
+            <ChevronLeft className="h-4 w-4" />
+            See all blogs
+          </Link>
+        </div>
+        <article className="container relative max-w-3xl mx-auto py-6 lg:py-10">
+          <div className="mb-8">
+            <p className="block text-sm text-muted-foreground">
+              Published on{" "}
+              <Moment format="MMMM Do, YYYY" date={blog.createdAt} />{" "}
+              {/* &#x2022; {readingTime(plainText).text} */}
+            </p>
 
-      <div className="mb-8">
-        <p className="block text-sm text-muted-foreground">
-          Published on <Moment format="MMMM Do, YYYY" date={blog.createdAt} />
-        </p>
+            <h1
+              className={cn(
+                "mt-2 scroll-m-20 text-4xl lg:text-5xl font-bold tracking-tight"
+              )}
+            >
+              {blog.title}
+            </h1>
 
-        <h1
-          className={cn(
-            "mt-2 scroll-m-20 text-4xl lg:text-5xl font-bold tracking-tight"
-          )}
-        >
-          {blog.title}
-        </h1>
-
-        <p className="mt-4 text-sm text-muted-foreground">
-          By: {(blog.author as User).name}
-        </p>
-      </div>
-
-      <Image
-        src={`${(blog.blogImage as Media).url}`}
-        alt={blog.title}
-        width={720}
-        height={405}
-        className="my-8 rounded-md border bg-muted transition-colors"
-        priority
-      />
-
-      <RenderBlocks layout={blog.layout} />
-
-      <hr className="mt-12" />
-      <div className="flex justify-center py-6 lg:py-10">
-        <Link href="/blog" className={cn(buttonVariants({ variant: "ghost" }))}>
-          <ChevronLeft className="mr-2 h-4 w-4" />
-          See all blogs
-        </Link>
-      </div>
-    </article>
+            <p className="mt-4 text-sm text-muted-foreground">
+              By: {(blog.author as User).name}
+            </p>
+          </div>
+          <Image
+            src={`${(blog.blogImage as Media).url}`}
+            alt={blog.title}
+            width={720}
+            height={405}
+            className="my-8 rounded-md border bg-muted transition-colors"
+            priority
+          />
+          <RenderBlocks layout={blog.layout} />
+          <hr className="mt-12" />
+          <div className="flex justify-center py-6 lg:py-10">
+            <Link
+              href="/blog"
+              className={cn(buttonVariants({ variant: "ghost" }))}
+            >
+              <ChevronLeft className="mr-2 h-4 w-4" />
+              See all blogs
+            </Link>
+          </div>
+        </article>
+        <div className=""></div>
+      </section>
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import BlogsReel from "@/components/blog/blog-reel";
+import PageHeading from "@/components/shared/page-heading";
 
 export const metadata = {
   title: "Blog",
@@ -6,19 +7,15 @@ export const metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="container mx-auto max-w-4xl py-6 lg:py-10">
+    <div className="container mx-auto max-w-4xl pb-7 pt-4 lg:pb-10 lg:pt-7">
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
-        <div className="flex-1 space-y-4">
-          <h1 className="inline-block font-bold text-4xl tracking-tight lg:text-5xl">
-            Blogs
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Grab a comfy seat! Our blogs are like a chat with a friend—casual,
-            fun, and full of interesting stuff. Enjoy the read!
-          </p>
-        </div>
+        <PageHeading
+          heading="Blogs"
+          text=" Grab a comfy seat! Our blogs are like a chat with a friend—casual,
+            fun, and full of interesting stuff. Enjoy the read!"
+        />
       </div>
-    <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+      <hr className="h-px my-6 bg-gray-200 border-0 dark:bg-gray-700" />
       <BlogsReel />
     </div>
   );

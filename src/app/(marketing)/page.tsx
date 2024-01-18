@@ -1,10 +1,12 @@
 import DealCallOut from "@/components/callouts/DealCallOut";
 import Card from "@/components/product/product-card";
 import Gutter from "@/components/shared/gutter";
+import Search from "@/components/shared/search";
 
 export default function Page() {
   return (
     <section>
+      <Search />
       <DealCallOut />
       <Gutter all>
         <div>
