@@ -128,7 +128,7 @@ export default async function page({ params: { slug } }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         key="blog-jsonld"
       />
-      <section className="pt-1 pb-6 flex flex-col md:flex-row gap-4 md:gap-6">
+      <section className="pt-1 pb-6 flex flex-col lg:flex-row gap-4 md:gap-6">
         <div className="flex flex-col md:sticky md:top-0 ">
           <Link
             href="/blog"
@@ -188,11 +188,11 @@ export default async function page({ params: { slug } }: PageProps) {
             category={blog.category}
             currentBlogId={blog.id}
             gridClass="grid"
-            titleClass="md:text-lg"
+            titleClass="lg:text-lg"
             cardClasses={{
-              rootClass: "md:max-w-72",
-              titleClass: "md:text-lg md:font-semibold",
-              imgClass: "md:h-96 md:w-80",
+              rootClass: "lg:max-w-72",
+              titleClass: "lg:text-lg lg:font-semibold",
+              imgClass: "lg:w-50 aspect-square",
             }}
           />
         </ScrollArea>

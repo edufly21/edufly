@@ -51,7 +51,7 @@ export default function Blog({
         alt={title}
         width={804}
         height={452}
-        className={cn("rounded-md border bg-muted transition-colors ", imgClass)}
+        className={cn("rounded-md border bg-muted transition-color ", imgClass)}
         priority={index ? index < 2 : false}
       />
 
@@ -61,8 +61,8 @@ export default function Blog({
       </p>
       <div>
         <p className="text-sm text-muted-foreground">
-          <Moment format="MMMM Do, YYYY" date={createdAt} /> &#x2022; {getBlogReadTime(blog)}
-          
+          <Moment format="MMMM Do, YYYY" date={createdAt} /> &#x2022;{" "}
+          {getBlogReadTime(blog)}
         </p>
       </div>
 
