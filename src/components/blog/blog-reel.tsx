@@ -70,10 +70,10 @@ const BlogsReel = (props: BlogReelProps) => {
 
   return (
     <section>
-      <div className="md:flex md:items-center md:justify-between mb-4">
-        <div className="max-w-2xl px-4 lg:max-w-4xl lg:px-0">
+      <div className="flex items-center justify-between mb-4">
+        <div className="max-w-2xl px-4 lg:max-w-3xl lg:px-0">
           {title && (
-            <h2 className="text-2xl font-bold sm:text-3xl">
+            <h2 className="text-xl font-bold sm:text-3xl">
               {title}
             </h2>
           )}
@@ -82,14 +82,14 @@ const BlogsReel = (props: BlogReelProps) => {
           )}
         </div>
 
-        {link ? (
+        {link && (
           <Link
             href={link.href}
             className={buttonVariants({variant: "ghost"})}
           >
-            {link.text} <span aria-hidden="true" className="ml-2">&rarr;</span>
+            {link.text} <span className="ml-2 sr-only">&rarr;</span>
           </Link>
-        ) : null}
+        )}
       </div>
 
       <div className="relative">
