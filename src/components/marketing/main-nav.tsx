@@ -21,7 +21,7 @@ export default async function mainNav() {
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon">
               <User className="h-5 w-5" />
-              <span className="sr-only"> User </span>
+              <span> Account </span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
@@ -36,7 +36,7 @@ export default async function mainNav() {
       )}
       {!user && (
         <Link href="/sign-in" className="flex gap-2">
-          <User className="h-6 w-6 sr-only" />
+          <User className="h-6 w-6 " />
           <p>Sign in</p>
         </Link>
       )}
@@ -44,10 +44,10 @@ export default async function mainNav() {
         <GanttChartSquare className="h-6 w-6" />
         <p>Projects</p>
       </Link>
-      <Link href="/pictures" className="flex gap-2">
+      {/* <Link href="/pictures" className="flex gap-2">
         <BookImage className="h-6 w-6" />
         <p>Pictures</p>
-      </Link>
+      </Link> */}
       <Cart />
     </div>
   );

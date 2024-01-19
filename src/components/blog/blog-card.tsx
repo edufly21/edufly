@@ -5,13 +5,26 @@ import { Blog, Media } from "@/types/payload-types";
 import Moment from "../shared/moment";
 import Link from "next/link";
 import { CardPlaceholder } from "../skeletons";
+import { cn } from "@/lib/utils/shadcn-ui";
+import { getBlogReadTime } from "@/lib/utils";
 
 interface BlogProps {
   blog: Blog | null;
   index?: number;
+  rootClass?: string;
+  titleClass?: string;
+  bodyClass?: string;
+  imgClass?: string;
 }
 
-export default function Blog({ blog, index }: BlogProps) {
+export default function Blog({
+  blog,
+  index,
+  rootClass,
+  titleClass,
+  bodyClass,
+  imgClass,
+}: BlogProps) {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
@@ -30,21 +43,29 @@ export default function Blog({ blog, index }: BlogProps) {
   const { title, description, createdAt, slug, blogImage } = blog;
 
   return (
-    <article className="w-fit max-w-xs group relative flex flex-col space-y-2">
+    <article
+      className={cn("w-fit group relative flex flex-col space-y-2", rootClass)}
+    >
       <Image
         src={`${(blogImage as Media).url}`}
         alt={title}
         width={804}
         height={452}
-        className="rounded-md border bg-muted transition-colors"
+        className={cn("rounded-md border bg-muted transition-colors", imgClass)}
         priority={index ? index < 2 : false}
       />
-    
-      <h2 className="text-2xl font-extrabold">{title}</h2>
-      <p className="line-clamp-4 text-muted-foreground">{description}</p>
-      <p className="text-sm text-muted-foreground">
-        <Moment format="MMMM Do, YYYY" date={createdAt} />
+
+      <h2 className={cn("text-2xl font-extrabold", titleClass)}>{title}</h2>
+      <p className={cn("line-clamp-4 text-muted-foreground", bodyClass)}>
+        {description}
       </p>
+      <div>
+        <p className="text-sm text-muted-foreground">
+          <Moment format="MMMM Do, YYYY" date={createdAt} />
+        </p>
+        &npsp;&#x2022; {getBlogReadTime(blog)}
+      </div>
+
       <Link href={`/blog/${slug}`} className="absolute inset-0">
         <span className="sr-only">read the blog.</span>
       </Link>

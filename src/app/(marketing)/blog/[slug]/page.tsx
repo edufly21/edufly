@@ -5,30 +5,19 @@ import Moment from "@/components/shared/moment";
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { getPayloadClient } from "@/get-payload";
+import { getBlogReadTime, layoutContentsToText } from "@/lib/utils";
 import { cn } from "@/lib/utils/shadcn-ui";
 import { Media, User } from "@/types/payload-types";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { serialize } from "@/lib/utils"
-import readingTime from "reading-time"
+
 interface PageProps {
   params: {
     slug: string;
   };
 }
-type ContentBlock = {
-  content?:
-    | {
-        [k: string]: unknown;
-      }[]
-    | null
-    | undefined;
-  id?: string | null | undefined;
-  blockName?: string | null | undefined;
-  blockType: "content";
-};
 
 export async function generateMetadata({
   params: { slug },
@@ -100,17 +89,9 @@ export default async function page({ params: { slug } }: PageProps) {
   if (!blog) {
     notFound();
   }
-   const contentBlocks = blog.layout?.filter(
-    (block) => block.blockType === "content"
-   ) as ContentBlock[];
 
-   const contents = contentBlocks
-     .map((block) => block.content)
-     .flat()
-     .filter((content) => content !== null && content !== undefined) as {
-     [k: string]: unknown;
-   }[];
-   const plainText = serialize(contents);
+  const plainText = layoutContentsToText(blog.layout);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -135,7 +116,7 @@ export default async function page({ params: { slug } }: PageProps) {
         url: "/logo.svg",
       },
     },
-     keywords: blog.keywords.split(", "),
+    keywords: blog.keywords.split(", "),
     articleBody: plainText || blog.description,
   };
 
@@ -146,7 +127,7 @@ export default async function page({ params: { slug } }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         key="blog-jsonld"
       />
-      <section className="pt-3 pb-7 lg:py-10 flex flex-col md:flex-row gap-4 md:gap-6">
+      <section className="pt-1 pb-7 lg:py-10 flex flex-col md:flex-row gap-4 md:gap-6">
         <div className="flex flex-col">
           <Link
             href="/blog"
@@ -163,8 +144,8 @@ export default async function page({ params: { slug } }: PageProps) {
           <div className="mb-8">
             <p className="block text-sm text-muted-foreground">
               Published on{" "}
-              <Moment format="MMMM Do, YYYY" date={blog.createdAt} />{" "}
-              &#x2022; {readingTime(plainText).text} 
+              <Moment format="MMMM Do, YYYY" date={blog.createdAt} /> &#x2022;{" "}
+              {getBlogReadTime(blog)}
             </p>
 
             <h1
@@ -199,14 +180,19 @@ export default async function page({ params: { slug } }: PageProps) {
             </Link>
           </div>
         </article>
-         <div className="relative px-6">
+        <div className="relative px-6">
           <BlogsReel
             title="Related Blogs"
             link={{ href: "/blog", text: "See more" }}
             category={blog.category}
             currentBlogId={blog.id}
+            gridClass="grid"
+            cardClasses={{
+              rootClass: "md:max-w-72",
+              titleClass: "md:text-lg md:font-semibold",
+            }}
           />
-        </div> 
+        </div>
       </section>
     </>
   );

@@ -5,7 +5,8 @@ import { trpc } from "@/trpc/client";
 import { Blog as IBlog } from "@/types/payload-types";
 import Link from "next/link";
 import { type Where as Query } from "payload/types";
-import {buttonVariants} from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils/shadcn-ui";
 interface BlogReelProps {
   title?: string;
   subtitle?: string;
@@ -19,6 +20,15 @@ interface BlogReelProps {
   Card?: React.FC<{ blog: IBlog | null; index?: number }>;
   currentBlogId?: IBlog["id"];
   category?: IBlog["category"];
+  rootClass?: string;
+  gridClass?: string;
+
+  cardClasses?: {
+    rootClass?: string;
+    titleClass?: string;
+    bodyClass?: string;
+    imgClass?: string;
+  };
 }
 
 const FALLBACK_LIMIT = 4;
@@ -34,6 +44,9 @@ const BlogsReel = (props: BlogReelProps) => {
     Card = Blog,
     currentBlogId,
     category,
+    rootClass,
+    gridClass = "grid sm:grid-cols-2 md:grid-cols-4",
+    cardClasses,
   } = props;
 
   const {
@@ -69,14 +82,10 @@ const BlogsReel = (props: BlogReelProps) => {
   }
 
   return (
-    <section>
+    <section className={cn(rootClass)}>
       <div className="flex items-center justify-between mb-4">
-        <div className="max-w-2xl px-4 lg:max-w-3xl lg:px-0">
-          {title && (
-            <h2 className="text-xl font-bold sm:text-3xl">
-              {title}
-            </h2>
-          )}
+        <div>
+          {title && <h2 className="text-lg font-bold md:text-3xl">{title}</h2>}
           {subtitle && (
             <p className="mt-2 text-sm text-muted-foreground">{subtitle}</p>
           )}
@@ -85,18 +94,26 @@ const BlogsReel = (props: BlogReelProps) => {
         {link && (
           <Link
             href={link.href}
-            className={buttonVariants({variant: "ghost"})}
+            className={buttonVariants({ variant: "ghost" })}
           >
-            {link.text} <span aria-hidden="true" className="ml-2">&rarr;</span>
+            {link.text}{" "}
+            <span aria-hidden="true" className="ml-2">
+              &rarr;
+            </span>
           </Link>
         )}
       </div>
 
       <div className="relative">
         <div className="mt-6 flex items-center w-full">
-          <div className="w-full flex gap-x-4 gap-y-10 sm:gap-x-6 md:gap-y-10 lg:gap-x-8">
+          <div
+            className={cn(
+              "w-full gap-x-4 gap-y-6 md:gap-y-10 lg:gap-x-8",
+              gridClass
+            )}
+          >
             {map.map((blog, i) => (
-              <Card key={`Blog-${i}`} blog={blog} index={i} />
+              <Card key={`Blog-${i}`} blog={blog} index={i} {...cardClasses} />
             ))}
           </div>
         </div>
