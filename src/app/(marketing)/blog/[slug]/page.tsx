@@ -181,7 +181,7 @@ export default async function page({ params: { slug } }: PageProps) {
             </Link>
           </div>
         </article>
-        <ScrollArea className="lg:h-full-dvh w-fit md:sticky md:top-0 relative px-6">
+        <ScrollArea className="lg:h-full-dvh max-w-3xl w-fit md:sticky md:top-0 relative px-6">
           <BlogsReel
             title="Related Blogs"
             link={{ href: "/blog", text: "See more" }}
