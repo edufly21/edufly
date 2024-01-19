@@ -22,7 +22,7 @@ interface BlogReelProps {
   category?: IBlog["category"];
   rootClass?: string;
   gridClass?: string;
-titleClass?: string;
+  titleClass?: string;
   cardClasses?: {
     rootClass?: string;
     titleClass?: string;
@@ -84,9 +84,13 @@ const BlogsReel = (props: BlogReelProps) => {
 
   return (
     <section className={cn(rootClass)}>
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-3">
         <div>
-          {title && <h2 className={cn("text-lg font-bold md:text-3xl", titleClass)}>{title}</h2>}
+          {title && (
+            <h2 className={cn("text-lg font-bold md:text-3xl", titleClass)}>
+              {title}
+            </h2>
+          )}
           {subtitle && (
             <p className="mt-2 text-sm text-muted-foreground">{subtitle}</p>
           )}
