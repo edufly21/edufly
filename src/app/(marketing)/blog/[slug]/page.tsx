@@ -128,7 +128,7 @@ export default async function page({ params: { slug } }: PageProps) {
         key="blog-jsonld"
       />
       <section className="pt-1 pb-7 lg:py-10 flex flex-col md:flex-row gap-4 md:gap-6">
-        <div className="flex flex-col">
+        <div className="flex flex-col sticky top-0 ">
           <Link
             href="/blog"
             className={cn(
@@ -180,7 +180,7 @@ export default async function page({ params: { slug } }: PageProps) {
             </Link>
           </div>
         </article>
-        <div className="relative px-6">
+        <div className="sticky top-0 relative px-6">
           <BlogsReel
             title="Related Blogs"
             link={{ href: "/blog", text: "See more" }}
