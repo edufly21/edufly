@@ -187,7 +187,7 @@ export default async function page({ params: { slug } }: PageProps) {
             link={{ href: "/blog", text: "See more" }}
             category={blog.category}
             currentBlogId={blog.id}
-            gridClass="grid"
+            gridClass="grid sm:grid-cols-2 lg:grid-cols-1"
             titleClass="lg:text-lg"
             cardClasses={{
               rootClass: "lg:max-w-72",
