@@ -146,7 +146,7 @@ export default async function page({ params: { slug } }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         key="blog-jsonld"
       />
-      <section className="py-6 lg:py-10 max-w-5xl flex flex-col md:flex-row gap-4 md:gap-6">
+      <section className="pt-3 pb-7 lg:py-10 max-w-5xl flex flex-col md:flex-row gap-4 md:gap-6">
         <div className="flex flex-col">
           <Link
             href="/blog"
