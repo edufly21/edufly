@@ -51,7 +51,7 @@ export default function Blog({
         alt={title}
         width={804}
         height={452}
-        className={cn("rounded-md border bg-muted transition-colors", imgClass)}
+        className={cn("rounded-md border bg-muted transition-colors ", imgClass)}
         priority={index ? index < 2 : false}
       />
 

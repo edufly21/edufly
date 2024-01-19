@@ -192,6 +192,7 @@ export default async function page({ params: { slug } }: PageProps) {
             cardClasses={{
               rootClass: "md:max-w-72",
               titleClass: "md:text-lg md:font-semibold",
+              imgClass: "md:h-96 md:w-80",
             }}
           />
         </ScrollArea>
