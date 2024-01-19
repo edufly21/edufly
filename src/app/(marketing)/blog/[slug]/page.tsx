@@ -152,7 +152,7 @@ export default async function page({ params: { slug } }: PageProps) {
             href="/blog"
             className={cn(
               buttonVariants({ variant: "ghost" }),
-              "hidden xl:inline-flex gap-2 items-center self-end"
+              "hidden xl:inline-flex gap-2 items-center ml-auto"
             )}
           >
             <ChevronLeft className="h-4 w-4" />
@@ -199,7 +199,7 @@ export default async function page({ params: { slug } }: PageProps) {
             </Link>
           </div>
         </article>
-         <div className="px-6">
+         <div className="relative px-6">
           <BlogsReel
             title="Related Blogs"
             link={{ href: "/blog", text: "See more" }}
