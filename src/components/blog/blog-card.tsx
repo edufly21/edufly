@@ -30,7 +30,7 @@ export default function Blog({ blog, index }: BlogProps) {
   const { title, description, createdAt, slug, blogImage } = blog;
 
   return (
-    <article className="w-fit group relative flex flex-col space-y-2">
+    <article className="w-fit max-w-xs group relative flex flex-col space-y-2">
       <Image
         src={`${(blogImage as Media).url}`}
         alt={title}
