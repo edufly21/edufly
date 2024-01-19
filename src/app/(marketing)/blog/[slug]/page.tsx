@@ -188,6 +188,7 @@ export default async function page({ params: { slug } }: PageProps) {
             category={blog.category}
             currentBlogId={blog.id}
             gridClass="grid"
+            titleClass="md:text-lg"
             cardClasses={{
               rootClass: "md:max-w-72",
               titleClass: "md:text-lg md:font-semibold",

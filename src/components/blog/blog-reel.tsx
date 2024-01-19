@@ -22,7 +22,7 @@ interface BlogReelProps {
   category?: IBlog["category"];
   rootClass?: string;
   gridClass?: string;
-
+titleClass?: string;
   cardClasses?: {
     rootClass?: string;
     titleClass?: string;
@@ -45,6 +45,7 @@ const BlogsReel = (props: BlogReelProps) => {
     currentBlogId,
     category,
     rootClass,
+    titleClass,
     gridClass = "grid sm:grid-cols-2 md:grid-cols-4",
     cardClasses,
   } = props;
@@ -85,7 +86,7 @@ const BlogsReel = (props: BlogReelProps) => {
     <section className={cn(rootClass)}>
       <div className="flex items-center justify-between mb-4">
         <div>
-          {title && <h2 className="text-lg font-bold md:text-3xl">{title}</h2>}
+          {title && <h2 className={cn("text-lg font-bold md:text-3xl", titleClass)}>{title}</h2>}
           {subtitle && (
             <p className="mt-2 text-sm text-muted-foreground">{subtitle}</p>
           )}
