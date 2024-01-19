@@ -61,9 +61,9 @@ export default function Blog({
       </p>
       <div>
         <p className="text-sm text-muted-foreground">
-          <Moment format="MMMM Do, YYYY" date={createdAt} />
+          <Moment format="MMMM Do, YYYY" date={createdAt} /> &#x2022; {getBlogReadTime(blog)}
+          
         </p>
-        &npsp;&#x2022; {getBlogReadTime(blog)}
       </div>
 
       <Link href={`/blog/${slug}`} className="absolute inset-0">
