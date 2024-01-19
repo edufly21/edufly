@@ -87,7 +87,7 @@ const BlogsReel = (props: BlogReelProps) => {
             href={link.href}
             className={buttonVariants({variant: "ghost"})}
           >
-            {link.text} <span className="ml-2 sr-only">&rarr;</span>
+            {link.text} <span aria-hidden="true" className="ml-2">&rarr;</span>
           </Link>
         )}
       </div>
