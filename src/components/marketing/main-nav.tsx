@@ -40,9 +40,9 @@ export default async function mainNav() {
           <p>Sign in</p>
         </Link>
       )}
-      <Link href="/projects" className="flex gap-2">
+      <Link href="/blog" className="flex gap-2">
         <GanttChartSquare className="h-6 w-6" />
-        <p>Projects</p>
+        <p>Blog</p>
       </Link>
       {/* <Link href="/pictures" className="flex gap-2">
         <BookImage className="h-6 w-6" />

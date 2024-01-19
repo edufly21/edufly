@@ -20,11 +20,11 @@
     --accent-foreground: 24 9.8% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 60 9.1% 97.8%;
-    ----info: 210 100% 55%; 
+    ----info: 210 100% 55%;
     --info-foreground: 0 0% 100%;
-    --warning: 40 100% 60%; 
+    --warning: 40 100% 60%;
     --warning-foreground: 0 0% 100%;
-    --success: 140 70% 45%; 
+    --success: 140 70% 45%;
     --success-foreground: 0 0% 100%;
     --border: 20 5.9% 90%;
     --input: 20 5.9% 90%;
@@ -49,9 +49,9 @@
     --accent-foreground: 60 9.1% 97.8%;
     --destructive: 0 72.2% 50.6%;
     --destructive-foreground: 60 9.1% 97.8%;
-    --info: 210 100% 55%; 
+    --info: 210 100% 55%;
     --info-foreground: 60 9.1% 97.8%;
-    --warning: 40 100% 60%; 
+    --warning: 40 100% 60%;
     --warning-foreground: 60 9.1% 97.8%;
     --success: 140 70% 45%;
     --success-foreground: 60 9.1% 97.8%;
@@ -71,5 +71,9 @@
   .h-full-dvh {
     height: 100vh;
     height: 100dvh;
+  }
+
+  .text-balance {
+    text-wrap: balance;
   }
 }

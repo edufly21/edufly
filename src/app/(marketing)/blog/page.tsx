@@ -13,6 +13,9 @@ export default function BlogPage() {
           heading="Blogs"
           text=" Grab a comfy seat! Our blogs are like a chat with a friend—casual,
             fun, and full of interesting stuff. Enjoy the read!"
+          classes={{
+            textClass: "text-balane max-w-2xl",
+          }}
         />
       </div>
       <hr className="h-px my-6 bg-gray-200 border-0 dark:bg-gray-700" />
