@@ -3,6 +3,7 @@ import BlogsReel from "@/components/blog/blog-reel";
 import { ChevronLeft } from "@/components/icons";
 import Moment from "@/components/shared/moment";
 import { buttonVariants } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { siteConfig } from "@/config/site";
 import { getPayloadClient } from "@/get-payload";
 import { getBlogReadTime, layoutContentsToText } from "@/lib/utils";
@@ -128,7 +129,7 @@ export default async function page({ params: { slug } }: PageProps) {
         key="blog-jsonld"
       />
       <section className="pt-1 pb-7 lg:py-10 flex flex-col md:flex-row gap-4 md:gap-6">
-        <div className="flex flex-col sticky top-0 ">
+        <div className="flex flex-col md:sticky md:top-0 ">
           <Link
             href="/blog"
             className={cn(
@@ -180,7 +181,7 @@ export default async function page({ params: { slug } }: PageProps) {
             </Link>
           </div>
         </article>
-        <div className="sticky top-0 relative px-6">
+        <ScrollArea className="md:h-full-dvh w-fit md:sticky md:top-0 relative px-6">
           <BlogsReel
             title="Related Blogs"
             link={{ href: "/blog", text: "See more" }}
@@ -192,7 +193,7 @@ export default async function page({ params: { slug } }: PageProps) {
               titleClass: "md:text-lg md:font-semibold",
             }}
           />
-        </div>
+        </ScrollArea>
       </section>
     </>
   );
