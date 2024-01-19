@@ -30,7 +30,7 @@ export default function Blog({ blog, index }: BlogProps) {
   const { title, description, createdAt, slug, blogImage } = blog;
 
   return (
-    <article className="group relative flex flex-col space-y-2">
+    <article className="w-fit group relative flex flex-col space-y-2">
       <Image
         src={`${(blogImage as Media).url}`}
         alt={title}
@@ -46,7 +46,7 @@ export default function Blog({ blog, index }: BlogProps) {
         <Moment format="MMMM Do, YYYY" date={createdAt} />
       </p>
       <Link href={`/blog/${slug}`} className="absolute inset-0">
-        <span className="sr-only">View Article</span>
+        <span className="sr-only">read the blog.</span>
       </Link>
     </article>
   );
