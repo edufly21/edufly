@@ -48,7 +48,7 @@ export default function Blog({
     <article
       className={cn("w-fit group relative flex flex-col space-y-2", rootClass)}
     >
-      <l
+    
       <Image
         src={`${(blogImage as Media).url}`}
         alt={title}
