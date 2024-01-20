@@ -26,6 +26,7 @@ interface BlogReelProps {
     titleClass?: string;
     bodyClass?: string;
     imgClass?: string;
+    footerClass?: string;
   };
 }
 
