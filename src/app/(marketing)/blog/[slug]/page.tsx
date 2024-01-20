@@ -198,7 +198,7 @@ const relatedBlogsQuery = {
             gridClass="grid sm:grid-cols-2 lg:grid-cols-1"
             titleClass="lg:text-lg"
             cardClasses={{
-              rootClass: "lg:max-w-72 flex-row",
+              rootClass: "lg:max-w-72",
               titleClass: "lg:text-lg lg:font-medium",
               bodyClass: "hidden",
               imgClass: "lg:w-50 lg:h-50",
