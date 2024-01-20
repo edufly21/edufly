@@ -17,7 +17,7 @@ export default function BlogPage({searchParams}:PageProps) {
   if (searchParams.category){
     parsedQueries = {
       category: {
-        equals: category
+        equals: searchParams.category
       }
     }
   }
