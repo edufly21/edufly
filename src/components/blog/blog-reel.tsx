@@ -107,7 +107,7 @@ const BlogsReel = (props: BlogReelProps) => {
         <div className="mt-6 flex items-center w-full">
           <div
             className={cn(
-              "w-full gap-x-4 gap-y-6 md:gap-y-10 lg:gap-x-8",
+              "w-full gap-y-10  gap-x-8",
               gridClass
             )}
           >
