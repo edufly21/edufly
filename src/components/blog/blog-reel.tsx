@@ -18,8 +18,6 @@ interface BlogReelProps {
   limit?: number;
   sort?: "asc" | "desc";
   Card?: React.FC<{ blog: IBlog | null; index?: number }>;
-  currentBlogId?: IBlog["id"];
-  category?: IBlog["category"];
   rootClass?: string;
   gridClass?: string;
   titleClass?: string;
@@ -42,8 +40,6 @@ const BlogsReel = (props: BlogReelProps) => {
     limit = FALLBACK_LIMIT,
     sort,
     Card = Blog,
-    currentBlogId,
-    category,
     rootClass,
     titleClass,
     gridClass = "grid sm:grid-cols-2",
@@ -59,8 +55,6 @@ const BlogsReel = (props: BlogReelProps) => {
       query,
       limit,
       sort,
-      currentBlogId,
-      category,
     },
     {
       getNextPageParam: (lastPage) => lastPage.nextPage,
