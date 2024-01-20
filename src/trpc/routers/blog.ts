@@ -15,13 +15,9 @@ export const blogRouter = router({
             return val;
           })
           .optional(),
-        category: z
-          .custom<Blog["category"]>((val) => {
-            return val;
-          })
-          .optional(),
+        
         sort: z.string().optional(),
-        currentBlogId: z.string().optional(),
+        
       })
     )
     .query(async ({ input }) => {
@@ -30,8 +26,7 @@ export const blogRouter = router({
         cursor,
         limit = 15,
         sort,
-        currentBlogId,
-        category,
+        
       } = input;
 
       const page = cursor || 1;
@@ -40,28 +35,14 @@ export const blogRouter = router({
 
       let parsedQueries = {};
 
-      if (category) {
-        parsedQueries = {
-          ...parsedQueries,
-          category: {
-            equals: category,
-          },
-        };
-      }
+      
       if (query) {
         parsedQueries = {
-          ...parsedQueries,
+        
           ...query,
         };
       }
-      if (currentBlogId) {
-        parsedQueries = {
-          ...parsedQueries,
-          id: {
-            notEquals: currentBlogId,
-          },
-        };
-      }
+      
 
       const {
         docs: items,
