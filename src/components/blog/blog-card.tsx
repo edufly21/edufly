@@ -14,6 +14,7 @@ interface BlogProps {
   rootClass?: string;
   titleClass?: string;
   bodyClass?: string;
+  footerClass?: string;
   imgClass?: string;
 }
 
@@ -24,6 +25,7 @@ export default function Blog({
   titleClass,
   bodyClass,
   imgClass,
+  footerClass
 }: BlogProps) {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
@@ -46,22 +48,26 @@ export default function Blog({
     <article
       className={cn("w-fit group relative flex flex-col space-y-2", rootClass)}
     >
+      <div className="relative w-[804px] h-[452px]">
       <Image
         src={`${(blogImage as Media).url}`}
         alt={title}
-        width={804}
-        height={452}
+        fill
+        sizez="100%"
         className={cn("rounded-md border bg-muted transition-color object-cover ", imgClass)}
         priority={index ? index < 2 : false}
       />
-
+      </div>
       <h2 className={cn("text-2xl font-extrabold line-clamp-2", titleClass)}>{title}</h2>
       <p className={cn("line-clamp-4 text-muted-foreground", bodyClass)}>
         {description}
       </p>
-      <div>
-        <p className="text-sm text-muted-foreground">
-          <Moment format="MMMM Do, YYYY" date={createdAt} /> &#x2022;{" "}
+      <div className={cn("text-sm text-muted-foreground flex gap-2", footerClass)}>
+        <p>
+          <Moment format="MMMM Do, YYYY" date={createdAt} />
+        </p>
+        &#x2022;
+        <p>
           {getBlogReadTime(blog)}
         </p>
       </div>
