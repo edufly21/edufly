@@ -48,13 +48,13 @@ export default function Blog({
     <article
       className={cn("w-fit group relative flex flex-col space-y-2", rootClass)}
     >
-      <div className="relative w-[804px] h-[452px]">
+      <div className={cn("relative w-[804px] h-[452px]", imgClass)}>
       <Image
         src={`${(blogImage as Media).url}`}
         alt={title}
         fill
         sizez="100%"
-        className={cn("rounded-md border bg-muted transition-color object-cover ", imgClass)}
+        className={cn("rounded-md border bg-muted transition-color object-cover ")}
         priority={index ? index < 2 : false}
       />
       </div>
