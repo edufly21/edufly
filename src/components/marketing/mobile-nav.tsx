@@ -18,13 +18,13 @@ export default async function MobileNav() {
 
   return (
     <div className="flex gap-2 md:hidden">
-      <Link
+      {/* <Link
         href="/search"
         className={buttonVariants({ variant: "outline", size: "icon" })}
       >
         <Search className="h-5 w-5 " />
         <span className="sr-only">Search</span>
-      </Link>
+      </Link>*/}
       {user ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
