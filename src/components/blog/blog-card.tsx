@@ -51,11 +51,11 @@ export default function Blog({
         alt={title}
         width={804}
         height={452}
-        className={cn("rounded-md border bg-muted transition-color ", imgClass)}
+        className={cn("rounded-md border bg-muted transition-color object-cover ", imgClass)}
         priority={index ? index < 2 : false}
       />
 
-      <h2 className={cn("text-2xl font-extrabold", titleClass)}>{title}</h2>
+      <h2 className={cn("text-2xl font-extrabold line-clamp-2", titleClass)}>{title}</h2>
       <p className={cn("line-clamp-4 text-muted-foreground", bodyClass)}>
         {description}
       </p>
