@@ -5,7 +5,22 @@ export const metadata = {
   title: "Blog",
 };
 
-export default function BlogPage() {
+
+interface PageProps {
+  searchParams: {
+    category: string;
+  }
+}
+
+export default function BlogPage({searchParams}:PageProps) {
+  let parsedQueries = {}
+  if (searchParams.category){
+    parsedQueries = {
+      category: {
+        equals: category
+      }
+    }
+  }
   return (
     <div className="container mx-auto max-w-4xl pb-7 pt-4 lg:pb-10 lg:pt-7">
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
@@ -19,7 +34,7 @@ export default function BlogPage() {
         />
       </div>
       <hr className="h-px my-6 bg-gray-200 border-0 dark:bg-gray-700" />
-      <BlogsReel />
+      <BlogsReel query={parsedQueries} />
     </div>
   );
 }
