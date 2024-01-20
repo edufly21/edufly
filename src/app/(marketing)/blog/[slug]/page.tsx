@@ -121,6 +121,15 @@ export default async function page({ params: { slug } }: PageProps) {
     articleBody: plainText || blog.description,
   };
 
+  
+const relatedBlogsQuery = {
+  id: {
+    not_equals: blog.id
+  },
+  category: {
+    equals: blog.category
+  }
+}
   return (
     <>
       <script
@@ -185,14 +194,13 @@ export default async function page({ params: { slug } }: PageProps) {
           <BlogsReel
             title="Related Blogs"
             link={{ href: "/blog", text: "See more" }}
-            category={blog.category}
-            currentBlogId={blog.id}
+            query={relatedBlogsQuery}
             gridClass="grid sm:grid-cols-2 lg:grid-cols-1"
             titleClass="lg:text-lg"
             cardClasses={{
               rootClass: "lg:max-w-72",
               titleClass: "lg:text-lg lg:font-semibold",
-              imgClass: "lg:w-50 aspect-square",
+              imgClass: "lg:w-50 lg:h-50",
             }}
           />
         </ScrollArea>
@@ -200,3 +208,5 @@ export default async function page({ params: { slug } }: PageProps) {
     </>
   );
 }
+
+
