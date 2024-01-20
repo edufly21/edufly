@@ -53,7 +53,7 @@ export default function Blog({
         src={`${(blogImage as Media).url}`}
         alt={title}
         fill
-        sizez="100%"
+        sizes="100%"
         className={cn("rounded-md border bg-muted transition-color object-cover ")}
         priority={index ? index < 2 : false}
       />
