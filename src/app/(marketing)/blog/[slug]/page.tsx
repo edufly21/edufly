@@ -13,7 +13,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
+import BlogMiniCard from "@/components/blog/blog-mini-card"
 interface PageProps {
   params: {
     slug: string;
@@ -195,6 +195,7 @@ const relatedBlogsQuery = {
             title="Related Blogs"
             link={{ href: "/blog", text: "See more" }}
             query={relatedBlogsQuery}
+            card={BlogMiniCard}
             gridClass="grid sm:grid-cols-2 lg:grid-cols-1"
             titleClass="lg:text-lg"
             cardClasses={{
