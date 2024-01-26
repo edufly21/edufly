@@ -30,7 +30,7 @@ const BlogMiniCard = ({
     return () => clearTimeout(timer);
   }, [index]);
 
-  if (!blog || !isVisible) return <Skeleton />;
+  if (!blog || !isVisible) return <Placeholder />;
   
    return  (     
     <div className="w-full flex justify-between items-center hover:bg-muted">
@@ -62,7 +62,7 @@ const BlogMiniCard = ({
 
   
 
-function Skeleton() {
+function Placeholder() {
   return (
     <div className="flex items-center space-x-4">
       <Skeleton className="h-20 w-20 rounded-lg" />
