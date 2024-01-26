@@ -198,8 +198,9 @@ const relatedBlogsQuery = {
             Card={BlogMiniCard}
             gridClass="grid sm:grid-cols-2 lg:grid-cols-1"
             titleClass="lg:text-lg"
+            rootClass="lg:max-w-sm"
             cardClasses={{
-              rootClass: "lg:max-w-72",
+              rootClass: "lg:max-w-xs",
               titleClass: "lg:text-lg lg:font-medium",
               bodyClass: "hidden",
               imgClass: "lg:w-50 lg:h-50",
