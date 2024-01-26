@@ -38,7 +38,7 @@ const BlogMiniCard = ({
         src={`${(blog.blogImage as Media).url}`}
         alt={blog.title}
         height = {80}
-        height = {80}
+        width = {80}
         className="w-20 h-20 rounded-lg"
       />
       <div className="flex-1 flex flex-col justify-center mx-3">
