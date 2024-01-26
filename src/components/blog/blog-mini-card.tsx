@@ -7,7 +7,7 @@ import Moment from "../shared/moment";
 import { Skeleton } from "@/components/ui/skeleton"
 import { getBlogReadTime } from "@/lib/utils";
 interface BlogMinuCardProps {
-  blog: Blog;
+  blog: Blog | null;
   index?: number;
 }
 
